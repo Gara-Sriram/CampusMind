@@ -1,0 +1,2600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AskIIITA – Complete Project Guide & Interview Preparation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --primary: #6366f1;
+    --primary-light: #818cf8;
+    --accent: #c084fc;
+    --bg: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --code-bg: #f1f5f9;
+    --card-bg: #f8fafc;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #06b6d4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--bg);
+    font-size: 11pt;
+  }
+
+  /* ── Page / Print Settings ── */
+  @page {
+    size: A4;
+    margin: 20mm 18mm 20mm 18mm;
+  }
+
+  @media print {
+    body { font-size: 10pt; }
+    .page-break { page-break-before: always; }
+    .no-break { page-break-inside: avoid; }
+    h1, h2, h3 { page-break-after: avoid; }
+    .cover-page { height: 100vh; }
+  }
+
+  /* ── Cover Page ── */
+  .cover-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    text-align: center;
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4338ca 60%, #6366f1 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+  .cover-page .logo { font-size: 5rem; margin-bottom: 1rem; }
+  .cover-page h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #c084fc, #818cf8, #38bdf8, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover-page .subtitle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .cover-page .divider {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, #c084fc, #38bdf8);
+    border-radius: 2px;
+    margin: 1.5rem auto;
+  }
+  .cover-page .meta {
+    font-size: 0.95rem;
+    opacity: 0.7;
+    line-height: 1.8;
+  }
+  .cover-page .meta strong { opacity: 1; color: #c4b5fd; }
+
+  /* ── Table of Contents ── */
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .toc h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.5rem;
+  }
+  .toc ol {
+    counter-reset: toc-counter;
+    list-style: none;
+    padding: 0;
+  }
+  .toc > ol > li {
+    counter-increment: toc-counter;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .toc > ol > li::before {
+    content: counter(toc-counter) ". ";
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .toc ol ol {
+    padding-left: 1.5rem;
+    margin-top: 0.3rem;
+  }
+  .toc ol ol li {
+    font-weight: 400;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+  }
+
+  /* ── Section Headers ── */
+  h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 0.5rem;
+    margin: 2.5rem 0 1.2rem 0;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #4338ca;
+    margin: 2rem 0 0.8rem 0;
+    padding-left: 0.8rem;
+    border-left: 4px solid var(--primary);
+  }
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 1.5rem 0 0.6rem 0;
+  }
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 1rem 0 0.4rem 0;
+  }
+
+  /* ── Content ── */
+  p { margin-bottom: 0.8rem; }
+
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  li { margin-bottom: 0.3rem; }
+
+  /* ── Code Blocks ── */
+  code {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: #7c3aed;
+  }
+  pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 1.2rem 1.4rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 1rem 0 1.2rem 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    border: 1px solid #334155;
+  }
+  pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+  }
+  .comment { color: #94a3b8; }
+  .keyword { color: #c084fc; }
+  .string { color: #34d399; }
+  .function { color: #38bdf8; }
+  .decorator { color: #fbbf24; }
+
+  /* ── Cards / Boxes ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    margin: 1rem 0;
+  }
+  .card.highlight {
+    border-left: 4px solid var(--primary);
+    background: #eef2ff;
+  }
+  .card.warning {
+    border-left: 4px solid var(--warning);
+    background: #fffbeb;
+  }
+  .card.success {
+    border-left: 4px solid var(--success);
+    background: #ecfdf5;
+  }
+  .card.info {
+    border-left: 4px solid var(--info);
+    background: #ecfeff;
+  }
+  .card-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: var(--primary);
+    color: white;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+  }
+  td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:nth-child(even) { background: var(--card-bg); }
+  tr:hover { background: #eef2ff; }
+
+  /* ── Folder Structure ── */
+  .tree {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 10px;
+    line-height: 1.8;
+    margin: 1rem 0;
+  }
+  .tree .folder { color: #38bdf8; font-weight: 600; }
+  .tree .file { color: #34d399; }
+  .tree .desc { color: #94a3b8; font-style: italic; }
+
+  /* ── Interview Q&A ── */
+  .qa {
+    margin-bottom: 1.5rem;
+    page-break-inside: avoid;
+  }
+  .question {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .question .q-num {
+    background: var(--primary);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .answer {
+    padding-left: 2.3rem;
+    color: #334155;
+    font-size: 0.93rem;
+  }
+  .answer ul { margin-top: 0.3rem; }
+
+  /* ── Flow / Architecture Diagrams ── */
+  .flow-diagram {
+    background: linear-gradient(135deg, #1e1b4b, #312e81);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin: 1.5rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    line-height: 2;
+  }
+  .flow-box {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    margin: 0.3rem;
+  }
+  .flow-arrow { color: #c084fc; font-weight: 700; margin: 0 0.3rem; }
+
+  /* ── Badge / Tag ── */
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .badge.purple { background: #ede9fe; color: #6d28d9; }
+  .badge.green { background: #d1fae5; color: #065f46; }
+  .badge.blue { background: #dbeafe; color: #1d4ed8; }
+  .badge.orange { background: #ffedd5; color: #c2410c; }
+  .badge.red { background: #fee2e2; color: #b91c1c; }
+
+  /* ── Separator ── */
+  hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 2rem 0;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+
+  /* Navigation Bar */
+  .nav-tabs-wrapper {
+    position: sticky;
+    top: 0;
+    background: rgba(30, 27, 75, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  }
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  .nav-btn.active {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+  }
+  .nav-btn:hover:not(.active) {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Chat Demo Container */
+  .chat-view-container {
+    max-width: 800px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: rgba(30, 27, 75, 0.4);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(8px);
+  }
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .chat-title h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #ffffff;
+  }
+  .chat-title p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0.2rem 0 0 0;
+  }
+  .chat-user-badge {
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: #ffffff;
+  }
+  .chat-messages {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.6);
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .msg-bubble {
+    max-width: 80%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+  .msg-bubble.user {
+    background: var(--primary);
+    color: #ffffff;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+  }
+  .msg-bubble.bot {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .msg-bubble.system {
+    background: rgba(251, 191, 36, 0.1);
+    color: #fcd34d;
+    align-self: center;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    font-size: 0.85rem;
+    text-align: center;
+    max-width: 90%;
+  }
+  .msg-sources {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 0.3rem;
+  }
+  .chat-input-area {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .chat-input {
+    flex: 1;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+  .chat-input:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  .chat-send-btn {
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .chat-send-btn:hover {
+    background: #4f46e5;
+  }
+
+  /* Auth Forms */
+  .auth-form-container {
+    max-width: 400px;
+    margin: 4rem auto;
+    padding: 2.5rem;
+    background: rgba(30, 27, 75, 0.4);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(8px);
+  }
+  .auth-form-container h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #ffffff;
+  }
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+  .form-group input, .form-group select {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.92rem;
+  }
+  .form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  .auth-submit-btn {
+    width: 100%;
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  .auth-submit-btn:hover {
+    background: #4f46e5;
+  }
+  .auth-toggle-link {
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--primary);
+    margin-top: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .auth-toggle-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Audit Logs Explorer */
+  .log-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .log-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .log-query {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+  .log-retrieved {
+    margin-top: 0.5rem;
+  }
+  .log-chunk {
+    font-size: 0.78rem;
+    background: rgba(0,0,0,0.2);
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.3rem;
+    border-left: 2px solid var(--primary);
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-tabs-wrapper">
+  <div class="nav-tabs">
+    <button id="btn-guide" class="nav-btn active" onclick="switchView('guide')">📖 Project Guide</button>
+    <button id="btn-chat" class="nav-btn" onclick="switchView('chat')">💬 Live Chat Demo</button>
+  </div>
+</div>
+
+<div id="guide-view-content">
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                              COVER PAGE                                   -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="cover-page">
+  <div class="logo">🎓</div>
+  <h1>AskIIITA</h1>
+  <p class="subtitle">Complete Project Guide & Interview Preparation</p>
+  <div class="divider"></div>
+  <p class="subtitle" style="font-size:1rem; margin-bottom:1rem;">
+    AI-Powered RAG Chatbot for IIIT Allahabad
+  </p>
+  <p class="meta">
+    <strong>Tech Stack:</strong> Streamlit · LangChain · Gemini AI · MongoDB Atlas Vector Search · PyJWT · PBKDF2 Hashing<br>
+    <strong>Architecture:</strong> Retrieval-Augmented Generation (RAG) + RBAC Security Gate<br>
+    <strong>Repository:</strong> github.com/Adityajakkula7/ASKIIITA<br>
+    <strong>Live URL:</strong> askiiita.streamlit.app & vercel-guide.vercel.app<br><br>
+    <strong>Document Prepared:</strong> August 2026
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                          TABLE OF CONTENTS                                -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="toc">
+  <h2>📑 Table of Contents</h2>
+  <ol>
+    <li>Project Overview & Motivation
+      <ol>
+        <li>What is AskIIITA?</li>
+        <li>Problem Statement</li>
+        <li>Key Features</li>
+      </ol>
+    </li>
+    <li>Tech Stack Deep Dive
+      <ol>
+        <li>Frontend – Streamlit</li>
+        <li>Orchestration – LangChain</li>
+        <li>Vector Database – MongoDB Atlas</li>
+        <li>LLM – Gemini 2.5 Flash Lite</li>
+        <li>Embeddings – Gemini Embedding 001</li>
+        <li>Environment & Deployment</li>
+      </ol>
+    </li>
+    <li>System Architecture & RAG Pipeline
+      <ol>
+        <li>End-to-End Architecture Diagram</li>
+        <li>Ingestion Pipeline (Offline)</li>
+        <li>Query Pipeline (Runtime)</li>
+        <li>How Vector Search Works</li>
+      </ol>
+    </li>
+    <li>Folder Structure (Complete)
+    </li>
+    <li>Code Walkthrough
+      <ol>
+        <li>ingest.py – Data Ingestion Pipeline</li>
+        <li>app.py – Main Application</li>
+        <li>check_setup.py – Environment Verifier</li>
+        <li>scrape_people.py – Web Scraper</li>
+        <li>auth.py – Authentication Module</li>
+        <li>migrate_access_levels.py – DB Migration</li>
+        <li>Configuration Files</li>
+      </ol>
+    </li>
+    <li>Role-Based Access Control (RBAC) & Security [NEW]
+      <ol>
+        <li>Access Level Hierarchy & Data Mapping</li>
+        <li>JWT-Based Authentication</li>
+        <li>Vector Search Pre-Filtering</li>
+        <li>Audit Logging & Administration Panel</li>
+      </ol>
+    </li>
+    <li>Data Sources & Knowledge Base</li>
+    <li>UI/UX Design Decisions</li>
+    <li>Deployment Guide & Vercel</li>
+    <li>Interview Questions & Answers (65+)
+      <ol>
+        <li>Project-Specific Questions</li>
+        <li>RAG Architecture Questions</li>
+        <li>Vector Database & Embeddings</li>
+        <li>LangChain & LLM Questions</li>
+        <li>Frontend & Streamlit</li>
+        <li>System Design & Scalability</li>
+        <li>Error Handling & Edge Cases</li>
+        <li>Security & RBAC Questions</li>
+        <li>Advanced / Follow-Up Questions</li>
+      </ol>
+    </li>
+    <li>Tips for Interview Presentation</li>
+  </ol>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 1: PROJECT OVERVIEW                           -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>1. Project Overview & Motivation</h1>
+
+<h2>1.1 What is AskIIITA?</h2>
+<p>
+  <strong>AskIIITA</strong> is an AI-powered <strong>Retrieval-Augmented Generation (RAG)</strong> chatbot designed exclusively for IIIT Allahabad. It allows students, faculty, and prospective students to ask natural-language questions about the institute and receive accurate, contextually grounded answers sourced directly from official IIIT Allahabad documents.
+</p>
+
+<div class="card highlight">
+  <p class="card-title">💡 One-Liner Pitch</p>
+  <p>"AskIIITA is a RAG chatbot that ingests IIIT Allahabad's official PDFs into a MongoDB Atlas vector store, retrieves the most relevant chunks via cosine similarity search, and feeds them to Gemini 2.5 Flash Lite to generate accurate, grounded answers — all through a beautiful Streamlit glassmorphism UI."</p>
+</div>
+
+<h2>1.2 Problem Statement</h2>
+<p>Students at IIIT Allahabad frequently need information about:</p>
+<ul>
+  <li>Fee structures, semester schedules, and academic calendars</li>
+  <li>Hostel rules, library policies, and health center details</li>
+  <li>Placement statistics, curriculum details, and NEP guidelines</li>
+  <li>Faculty information, administrative contacts, and Gymkhana details</li>
+</ul>
+<p>
+  This information is scattered across <strong>20+ PDF documents</strong> (fee brochures, hostel manuals, placement brochures, ordinance documents, etc.) and the institute website. Students must manually search through hundreds of pages to find answers.
+</p>
+
+<div class="card warning">
+  <p class="card-title">⚠️ The Problem</p>
+  <p>No single search interface exists to query across all official IIIT Allahabad documents. Students waste time hunting through PDFs, emails, and websites for answers that should be instant.</p>
+</div>
+
+<h2>1.3 Key Features</h2>
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr><td><strong>RAG-Powered Answers</strong></td><td>Answers are grounded in official documents — the LLM never hallucinates unsourced information</td></tr>
+  <tr><td><strong>10 Knowledge Categories</strong></td><td>Academics, Fees, Calendar, Hostel, Library, Placements, NEP, Health Center, Gymkhana, People</td></tr>
+  <tr><td><strong>Quick-Question Buttons</strong></td><td>Pre-built questions for each category for zero-typing interaction</td></tr>
+  <tr><td><strong>Dynamic Fee Queries</strong></td><td>Users select Program (B.Tech/M.Tech/PhD) + Batch year for precise fee questions</td></tr>
+  <tr><td><strong>Source Attribution</strong></td><td>Every answer shows which PDF(s) the information came from</td></tr>
+  <tr><td><strong>Time-Aware Responses</strong></td><td>The system prompt includes today's date so the LLM can say "this event has passed"</td></tr>
+  <tr><td><strong>Glassmorphism UI</strong></td><td>Stunning dark theme with frosted-glass cards, gradient text, and campus imagery</td></tr>
+  <tr><td><strong>Free-Text Input</strong></td><td>Users can type any question beyond the pre-built options</td></tr>
+  <tr><td><strong>Error Handling</strong></td><td>Graceful rate-limit and API error messages with actionable guidance</td></tr>
+  <tr><td><strong>100% Free Hosting</strong></td><td>Deployed on Streamlit Community Cloud + MongoDB M0 free tier + Gemini free tier</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 2: TECH STACK DEEP DIVE                       -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>2. Tech Stack Deep Dive</h1>
+
+<h2>2.1 Frontend – Streamlit</h2>
+<p><strong>Streamlit</strong> (v1.35+) is a Python-first framework for building interactive web applications. It was chosen because:</p>
+<ul>
+  <li><strong>Python-native:</strong> The entire app (backend + frontend) is in a single Python file — no separate React/Vue build step</li>
+  <li><strong>Rapid prototyping:</strong> Built-in widgets for chat messages, text inputs, buttons, columns, and containers</li>
+  <li><strong>Free deployment:</strong> Streamlit Community Cloud provides free hosting with GitHub integration</li>
+  <li><strong>Custom CSS injection:</strong> <code>st.markdown(unsafe_allow_html=True)</code> allows full CSS customization</li>
+</ul>
+
+<div class="card info">
+  <p class="card-title">🔧 Key Streamlit APIs Used</p>
+  <ul>
+    <li><code>st.set_page_config()</code> — Page title, icon, layout mode</li>
+    <li><code>st.columns()</code> — Three-column layout (left image | chat card | right image)</li>
+    <li><code>st.container(height=380)</code> — Fixed-height scrollable chat area</li>
+    <li><code>st.chat_message()</code> — User/assistant message bubbles</li>
+    <li><code>st.session_state</code> — State management across reruns</li>
+    <li><code>st.form()</code> — Form with Enter-to-submit for the query input</li>
+    <li><code>st.button()</code> — Category and quick-question buttons</li>
+    <li><code>st.spinner()</code> — Loading indicator during RAG processing</li>
+    <li><code>st.rerun()</code> — Force re-render after state changes</li>
+  </ul>
+</div>
+
+<h2>2.2 Orchestration – LangChain</h2>
+<p><strong>LangChain</strong> (v0.2+) is the orchestration framework that ties together document loading, text splitting, embedding, vector search, and LLM invocation.</p>
+
+<h3>LangChain Components Used:</h3>
+<table>
+  <tr><th>Component</th><th>Class</th><th>Purpose</th></tr>
+  <tr><td>Document Loader</td><td><code>PyPDFLoader</code>, <code>TextLoader</code></td><td>Load PDFs and TXT files into Document objects</td></tr>
+  <tr><td>Text Splitter</td><td><code>RecursiveCharacterTextSplitter</code></td><td>Split documents into overlapping chunks</td></tr>
+  <tr><td>Embeddings</td><td><code>GoogleGenerativeAIEmbeddings</code></td><td>Convert text → 768-dim vectors via Gemini</td></tr>
+  <tr><td>Vector Store</td><td><code>MongoDBAtlasVectorSearch</code></td><td>Store & search embeddings in MongoDB Atlas</td></tr>
+  <tr><td>LLM</td><td><code>ChatGoogleGenerativeAI</code></td><td>Gemini 2.5 Flash Lite for answer generation</td></tr>
+  <tr><td>Prompt</td><td><code>ChatPromptTemplate</code></td><td>System prompt with context + question template</td></tr>
+  <tr><td>Chain</td><td><code>RunnablePassthrough</code> + pipe (<code>|</code>)</td><td>LCEL chain: retriever → format → prompt → LLM → parse</td></tr>
+  <tr><td>Output Parser</td><td><code>StrOutputParser</code></td><td>Extract plain text from LLM response</td></tr>
+</table>
+
+<h2>2.3 Vector Database – MongoDB Atlas</h2>
+<p><strong>MongoDB Atlas</strong> is used as both the document store and vector search engine via its <strong>Atlas Vector Search</strong> feature.</p>
+
+<h3>Why MongoDB Atlas for Vector Search?</h3>
+<ul>
+  <li><strong>Free M0 tier:</strong> 512 MB storage — sufficient for this use case</li>
+  <li><strong>Native vector search:</strong> No need for a separate Pinecone/Weaviate instance</li>
+  <li><strong>Cosine similarity:</strong> The vector index uses cosine similarity for semantic matching</li>
+  <li><strong>Co-located metadata:</strong> Document text, metadata (source file, page number), and embeddings all live in the same document</li>
+</ul>
+
+<h3>Vector Index Configuration:</h3>
+<pre><code>{
+  "<span class="string">fields</span>": [
+    {
+      "<span class="string">type</span>": "<span class="string">vector</span>",
+      "<span class="string">path</span>": "<span class="string">embedding</span>",
+      "<span class="string">numDimensions</span>": <span class="keyword">768</span>,
+      "<span class="string">similarity</span>": "<span class="string">cosine</span>"
+    }
+  ]
+}</code></pre>
+
+<h3>Document Schema in MongoDB:</h3>
+<pre><code>{
+  "<span class="string">_id</span>": ObjectId("..."),
+  "<span class="string">text</span>": "<span class="string">The fee for B.Tech 2026 batch is...</span>",
+  "<span class="string">embedding</span>": [0.012, -0.045, 0.089, ...],  <span class="comment">// 768 floats</span>
+  "<span class="string">source_file</span>": "<span class="string">Fee Structure B.Tech. (New Batch 2026) updated.pdf</span>",
+  "<span class="string">page</span>": 2
+}</code></pre>
+
+<h2>2.4 LLM – Gemini 2.5 Flash Lite</h2>
+<p>The answer generation model is <strong>Gemini 2.5 Flash Lite</strong> (<code>gemini-2.5-flash-lite</code>), chosen for:</p>
+<ul>
+  <li><strong>Speed:</strong> Fastest Gemini model — sub-second responses</li>
+  <li><strong>Free tier:</strong> Generous free API quota for prototyping</li>
+  <li><strong>Low temperature (0.2):</strong> Reduces hallucination; answers stick closely to provided context</li>
+  <li><strong>Sufficient quality:</strong> For factual Q&A over retrieved context, a smaller model suffices</li>
+</ul>
+
+<h2>2.5 Embeddings – Gemini Embedding 001</h2>
+<p>The embedding model <code>models/gemini-embedding-001</code> converts text into <strong>768-dimensional</strong> dense vectors. These vectors capture semantic meaning, enabling similarity-based retrieval.</p>
+
+<div class="card success">
+  <p class="card-title">✅ Key Numbers</p>
+  <ul>
+    <li>Embedding dimensions: <strong>768</strong></li>
+    <li>Similarity metric: <strong>Cosine similarity</strong></li>
+    <li>Top-K retrieved chunks: <strong>4</strong></li>
+    <li>Chunk size: <strong>3200 characters</strong></li>
+    <li>Chunk overlap: <strong>200 characters</strong></li>
+  </ul>
+</div>
+
+<h2>2.6 Environment & Deployment</h2>
+<table>
+  <tr><th>Component</th><th>Platform</th><th>Cost</th></tr>
+  <tr><td>Frontend Hosting</td><td>Streamlit Community Cloud</td><td>Free</td></tr>
+  <tr><td>Database</td><td>MongoDB Atlas M0</td><td>Free (512 MB)</td></tr>
+  <tr><td>LLM API</td><td>Google AI Studio (Gemini)</td><td>Free tier</td></tr>
+  <tr><td>Version Control</td><td>GitHub</td><td>Free</td></tr>
+  <tr><td>Dev Container</td><td>GitHub Codespaces / VS Code</td><td>Free (limited hours)</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 3: ARCHITECTURE                               -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>3. System Architecture & RAG Pipeline</h1>
+
+<h2>3.1 End-to-End Architecture Diagram</h2>
+
+<div class="flow-diagram">
+  <strong style="font-size:1.1rem; color:#c084fc;">══ OFFLINE: Ingestion Pipeline ══</strong><br><br>
+  <span class="flow-box">📄 PDF / TXT Files<br>(20 documents in ./data/)</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-box">📖 PyPDFLoader<br>TextLoader</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-box">✂️ RecursiveCharacterTextSplitter<br>(3200 chars, 200 overlap)</span>
+  <br><br>
+  <span class="flow-arrow" style="font-size:1.5rem;">↓</span><br><br>
+  <span class="flow-box">🧠 Gemini Embedding 001<br>(text → 768-dim vector)</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-box">🗄️ MongoDB Atlas<br>Vector Store</span>
+  <br><br>
+  <hr style="border:1px solid rgba(255,255,255,0.15); margin:1.5rem 0;">
+  <strong style="font-size:1.1rem; color:#38bdf8;">══ ONLINE: Query Pipeline ══</strong><br><br>
+  <span class="flow-box">🧑‍🎓 User Question</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-box">🧠 Gemini Embedding<br>(query → vector)</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-box">🔍 Atlas Vector Search<br>(cosine similarity, k=4)</span>
+  <br><br>
+  <span class="flow-arrow" style="font-size:1.5rem;">↓</span><br><br>
+  <span class="flow-box">📋 Top-4 Chunks<br>+ System Prompt</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-box">🤖 Gemini 2.5 Flash Lite<br>(temperature=0.2)</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-box">💬 Grounded Answer<br>+ Source Attribution</span>
+</div>
+
+<h2>3.2 Ingestion Pipeline (Offline) — <code>ingest.py</code></h2>
+<p>The ingestion pipeline runs <strong>once</strong> (or whenever new documents are added). It follows these steps:</p>
+<ol>
+  <li><strong>Load environment variables</strong> from <code>.env</code> (MongoDB URI, Gemini API key)</li>
+  <li><strong>Discover files</strong>: Glob all <code>*.pdf</code> and <code>*.txt</code> files from <code>./data/</code></li>
+  <li><strong>Load documents</strong>: Use <code>PyPDFLoader</code> for PDFs and <code>TextLoader</code> for text files</li>
+  <li><strong>Split into chunks</strong>: <code>RecursiveCharacterTextSplitter</code> with separators <code>["\n\n", "\n", " ", ""]</code></li>
+  <li><strong>Tag metadata</strong>: Each chunk gets <code>source_file</code> metadata (the original filename)</li>
+  <li><strong>Clear existing collection</strong>: <code>collection.delete_many({})</code> for a clean re-index</li>
+  <li><strong>Batch embed & upsert</strong>: Send chunks in batches of 50 to avoid Gemini rate limits</li>
+  <li><strong>Retry logic</strong>: Handles <code>429 RESOURCE_EXHAUSTED</code>, DNS failures, and transient errors with exponential backoff</li>
+</ol>
+
+<h2>3.3 Query Pipeline (Runtime) — <code>ask()</code> function</h2>
+<p>Every user question triggers the <code>ask(query)</code> function which:</p>
+<ol>
+  <li><strong>Connects to MongoDB Atlas</strong> (with TLS, timeout settings)</li>
+  <li><strong>Creates a retriever</strong>: <code>MongoDBAtlasVectorSearch.as_retriever(search_kwargs={"k": 4})</code></li>
+  <li><strong>Embeds the query</strong>: The same Gemini embedding model converts the question to a vector</li>
+  <li><strong>Vector search</strong>: Atlas finds the top-4 most similar chunks via cosine similarity</li>
+  <li><strong>Builds the prompt</strong>: Injects retrieved context + the question into the system prompt template</li>
+  <li><strong>Calls Gemini LLM</strong>: Generates a grounded answer using only the provided context</li>
+  <li><strong>Returns answer + sources</strong>: The source PDF filenames are extracted from chunk metadata</li>
+</ol>
+
+<h2>3.4 How Vector Search Works</h2>
+<p><strong>Cosine similarity</strong> measures the angle between two vectors. Two text chunks about "B.Tech fee structure" will have vectors pointing in similar directions, yielding a cosine similarity close to 1.0.</p>
+<p>Formula: <code>similarity = cos(θ) = (A · B) / (|A| × |B|)</code></p>
+<ul>
+  <li><strong>1.0</strong> = identical meaning</li>
+  <li><strong>0.0</strong> = completely unrelated</li>
+  <li><strong>-1.0</strong> = opposite meaning (rare in practice)</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 4: FOLDER STRUCTURE                           -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>4. Folder Structure (Complete)</h1>
+
+<div class="tree">
+<span class="folder">ASKIIITA/</span>
+├── <span class="file">app.py</span>               <span class="desc"># Main Streamlit application (646 lines)</span>
+│                           <span class="desc">#   - Page config, CSS, session state</span>
+│                           <span class="desc">#   - Category definitions (10 categories)</span>
+│                           <span class="desc">#   - ask() RAG function</span>
+│                           <span class="desc">#   - Three-column UI layout</span>
+│                           <span class="desc">#   - Chat history & message rendering</span>
+│
+├── <span class="file">ingest.py</span>            <span class="desc"># Data ingestion pipeline (137 lines)</span>
+│                           <span class="desc">#   - PDF/TXT loading with LangChain loaders</span>
+│                           <span class="desc">#   - Recursive text splitting (3200 chars)</span>
+│                           <span class="desc">#   - Gemini embedding + MongoDB upsert</span>
+│                           <span class="desc">#   - Batched processing with rate-limit retries</span>
+│
+├── <span class="file">check_setup.py</span>       <span class="desc"># Environment verification (77 lines)</span>
+│                           <span class="desc">#   - Checks Python, .env, packages, MongoDB, Gemini</span>
+│
+├── <span class="file">requirements.txt</span>     <span class="desc"># Python dependencies (8 packages)</span>
+├── <span class="file">.env</span>                 <span class="desc"># Environment secrets (NOT committed to git)</span>
+├── <span class="file">.gitignore</span>           <span class="desc"># Git ignore rules</span>
+├── <span class="file">README.md</span>            <span class="desc"># Project documentation (168 lines)</span>
+│
+├── <span class="folder">data/</span>                <span class="desc"># Knowledge base documents</span>
+│   ├── <span class="file">Academic Calendar (...) Jan to December 2026.pdf</span>
+│   ├── <span class="file">B Tech.pdf</span>
+│   ├── <span class="file">DD M Tech Phd.pdf</span>
+│   ├── <span class="file">Fee Structure B.Tech. (New Batch 2026) updated.pdf</span>
+│   ├── <span class="file">General Library Rules & Regulations.pdf</span>
+│   ├── <span class="file">Gmail - Reminder_ Student Code of Conduct (...).pdf</span>
+│   ├── <span class="file">Gymkhana Constitution Draft final.pdf</span>
+│   ├── <span class="file">Hostel_Manual655.pdf</span>
+│   ├── <span class="file">IHC Schedule 01072025.pdf</span>
+│   ├── <span class="file">INSTITUTE PHARMACY_14.08.2025 (1).pdf</span>
+│   ├── <span class="file">Library Orientation-2024-UG+PG.pdf</span>
+│   ├── <span class="file">M Tech & M Tech (WP).pdf</span>
+│   ├── <span class="file">NEP Ordinance adob updated.pdf</span>
+│   ├── <span class="file">Phd & WP (1).pdf</span>
+│   ├── <span class="file">Phd & WP.pdf</span>
+│   ├── <span class="file">Phd Regular & WP.pdf</span>
+│   ├── <span class="file">Placement_Brochure_2026-27.pdf</span>
+│   ├── <span class="file">Salient_Points_& Examination Guidelines (...).pdf</span>
+│   ├── <span class="file">UG B,Tech Curriculum 2025.pdf</span>
+│   └── <span class="file">people_directory.txt</span>     <span class="desc"># Scraped faculty & officer data</span>
+│
+├── <span class="folder">images/</span>              <span class="desc"># Static images for UI</span>
+│   ├── <span class="file">campus1.jpg</span>          <span class="desc"># Left panel background</span>
+│   ├── <span class="file">campus2.jpg</span>          <span class="desc"># Right panel background</span>
+│   └── <span class="file">ui_screenshot.png</span>    <span class="desc"># README screenshot</span>
+│
+├── <span class="folder">scratch/</span>             <span class="desc"># Utility scripts (gitignored)</span>
+│   └── <span class="file">scrape_people.py</span>     <span class="desc"># IIITA website scraper for faculty data</span>
+│
+├── <span class="folder">.devcontainer/</span>       <span class="desc"># GitHub Codespaces configuration</span>
+│   └── <span class="file">devcontainer.json</span>    <span class="desc"># Python 3.11 image, auto-install, port 8501</span>
+│
+└── <span class="folder">.git/</span>                <span class="desc"># Git version control</span>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 5: CODE WALKTHROUGH                           -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>5. Code Walkthrough</h1>
+
+<h2>5.1 ingest.py – Data Ingestion Pipeline</h2>
+<p>This is the <strong>offline preprocessing script</strong> that converts raw documents into searchable vector embeddings.</p>
+
+<h3>Step-by-Step Breakdown:</h3>
+
+<h4>Step 1: Environment Loading</h4>
+<pre><code><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv
+load_dotenv(override=<span class="keyword">True</span>)
+MONGO_URI       = os.environ[<span class="string">"MONGO_URI"</span>]
+GEMINI_API_KEY  = os.environ[<span class="string">"GEMINI_API_KEY"</span>]</code></pre>
+<p>Uses <code>python-dotenv</code> to load secrets from <code>.env</code>. The <code>override=True</code> ensures the .env file takes precedence over system environment variables.</p>
+
+<h4>Step 2: File Discovery</h4>
+<pre><code><span class="keyword">if</span> len(sys.argv) > 1:
+    file_paths = sys.argv[1:]          <span class="comment"># Single file mode</span>
+<span class="keyword">else</span>:
+    file_paths = glob.glob(<span class="string">"data/*.pdf"</span>) + glob.glob(<span class="string">"data/*.txt"</span>)  <span class="comment"># All files</span></code></pre>
+<p>Supports both single-file and batch processing modes.</p>
+
+<h4>Step 3: Document Loading & Splitting</h4>
+<pre><code>splitter = RecursiveCharacterTextSplitter(
+    chunk_size=<span class="keyword">3200</span>,       <span class="comment"># Maximum characters per chunk</span>
+    chunk_overlap=<span class="keyword">200</span>,     <span class="comment"># Overlap between chunks for context continuity</span>
+    separators=[<span class="string">"\n\n"</span>, <span class="string">"\n"</span>, <span class="string">" "</span>, <span class="string">""</span>],  <span class="comment"># Priority order for splitting</span>
+)</code></pre>
+
+<div class="card highlight">
+  <p class="card-title">🧠 Why 3200 / 200?</p>
+  <ul>
+    <li><strong>chunk_size=3200:</strong> Large enough to capture full paragraphs, fee tables, and structured content without losing context. Larger than the typical 800-1000 because IIITA documents have dense tabular data.</li>
+    <li><strong>chunk_overlap=200:</strong> Ensures that information at chunk boundaries isn't lost. If a sentence spans two chunks, the overlap captures it in both.</li>
+    <li><strong>Separators hierarchy:</strong> Tries to split at paragraph breaks first (<code>\n\n</code>), then line breaks (<code>\n</code>), then spaces, and finally character-level as a last resort.</li>
+  </ul>
+</div>
+
+<h4>Step 4: Metadata Tagging</h4>
+<pre><code><span class="keyword">for</span> chunk <span class="keyword">in</span> chunks:
+    chunk.metadata[<span class="string">"source_file"</span>] = Path(path).name</code></pre>
+<p>Every chunk carries its source filename for attribution in the UI.</p>
+
+<h4>Step 5: Batched Upsert with Retry Logic</h4>
+<pre><code>batch_size = <span class="keyword">50</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> range(0, len(all_chunks), batch_size):
+    batch = all_chunks[i:i + batch_size]
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">try</span>:
+            vector_store.add_documents(batch)
+            <span class="keyword">break</span>
+        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+            <span class="keyword">if</span> <span class="string">"RESOURCE_EXHAUSTED"</span> <span class="keyword">in</span> str(e):
+                time.sleep(<span class="keyword">30</span>)   <span class="comment"># Rate limit: wait 30s</span>
+            <span class="keyword">elif</span> <span class="string">"getaddrinfo failed"</span> <span class="keyword">in</span> str(e):
+                time.sleep(<span class="keyword">15</span>)   <span class="comment"># DNS failure: wait 15s</span>
+            <span class="keyword">else</span>:
+                time.sleep(<span class="keyword">10</span>)   <span class="comment"># Transient error: wait 10s</span></code></pre>
+
+<div class="card warning">
+  <p class="card-title">⚠️ Why Batching?</p>
+  <p>The Gemini free tier has rate limits on embedding API calls. Processing 20 PDFs generates hundreds of chunks. Sending all at once would trigger <code>429 RESOURCE_EXHAUSTED</code> errors. Batches of 50 with 2-second delays between successful batches stay within limits.</p>
+</div>
+
+<hr>
+
+<h2>5.2 app.py – Main Application (646 lines)</h2>
+<p>The main application file is organized into these logical sections:</p>
+
+<h3>Section 1: Configuration & Imports (Lines 1-50)</h3>
+<pre><code>st.set_page_config(
+    page_title=<span class="string">"AskIIITA – Campus AI Assistant"</span>,
+    page_icon=<span class="string">"🎓"</span>,
+    layout=<span class="string">"wide"</span>,                  <span class="comment"># Full-width layout</span>
+    initial_sidebar_state=<span class="string">"collapsed"</span>,  <span class="comment"># Hide sidebar</span>
+)</code></pre>
+
+<h3>Section 2: Background Image Loading (Lines 33-49)</h3>
+<pre><code><span class="keyword">def</span> <span class="function">img_to_b64</span>(path: str) -> str:
+    p = Path(path)
+    <span class="keyword">if</span> p.exists():
+        <span class="keyword">return</span> base64.b64encode(p.read_bytes()).decode()
+    <span class="keyword">return</span> <span class="string">""</span></code></pre>
+<p>Campus images are converted to base64 strings and embedded directly in the CSS for the background and side panels. This avoids serving static files separately.</p>
+
+<h3>Section 3: Category Definitions (Lines 52-143)</h3>
+<p>A <code>CATEGORIES</code> dictionary defines all 10 knowledge categories, each with a color code and 4 pre-built quick questions:</p>
+<pre><code>CATEGORIES = {
+    <span class="string">"📚 Academics & Courses"</span>: {
+        <span class="string">"color"</span>: <span class="string">"#6366f1"</span>,
+        <span class="string">"questions"</span>: [
+            <span class="string">"What B.Tech & M.Tech programs are offered?"</span>,
+            <span class="string">"When does the current semester end?"</span>,
+            ...
+        ],
+    },
+    ...
+}</code></pre>
+
+<h3>Section 4: CSS Styling (Lines 145-404)</h3>
+<p>~260 lines of custom CSS implementing:</p>
+<ul>
+  <li><strong>Dark overlay</strong> on campus background with gradient</li>
+  <li><strong>Glassmorphism center card</strong> with <code>backdrop-filter: blur(32px)</code></li>
+  <li><strong>Gradient text</strong> for the title (<code>-webkit-background-clip: text</code>)</li>
+  <li><strong>Custom button styles</strong> with hover effects and transitions</li>
+  <li><strong>Chat message styling</strong> with semi-transparent backgrounds</li>
+  <li><strong>Scroll locking</strong> to prevent the page from scrolling</li>
+  <li><strong>Hidden Streamlit chrome</strong> (header, footer, sidebar)</li>
+</ul>
+
+<h3>Section 5: Session State Management (Lines 406-412)</h3>
+<pre><code><span class="keyword">if</span> <span class="string">"messages"</span>         <span class="keyword">not in</span> st.session_state: st.session_state[<span class="string">"messages"</span>]         = []
+<span class="keyword">if</span> <span class="string">"active_category"</span>  <span class="keyword">not in</span> st.session_state: st.session_state[<span class="string">"active_category"</span>]  = <span class="keyword">None</span>
+<span class="keyword">if</span> <span class="string">"pending_query"</span>    <span class="keyword">not in</span> st.session_state: st.session_state[<span class="string">"pending_query"</span>]    = <span class="keyword">None</span>
+<span class="keyword">if</span> <span class="string">"selected_program"</span> <span class="keyword">not in</span> st.session_state: st.session_state[<span class="string">"selected_program"</span>] = <span class="string">"B.Tech"</span>
+<span class="keyword">if</span> <span class="string">"selected_batch"</span>   <span class="keyword">not in</span> st.session_state: st.session_state[<span class="string">"selected_batch"</span>]   = <span class="string">"2026"</span>
+<span class="keyword">if</span> <span class="string">"show_questions"</span>   <span class="keyword">not in</span> st.session_state: st.session_state[<span class="string">"show_questions"</span>]   = <span class="keyword">True</span></code></pre>
+
+<div class="card highlight">
+  <p class="card-title">🔑 Session State Variables</p>
+  <table>
+    <tr><th>Variable</th><th>Type</th><th>Purpose</th></tr>
+    <tr><td><code>messages</code></td><td>List[dict]</td><td>Chat history (role, content, sources)</td></tr>
+    <tr><td><code>active_category</code></td><td>str | None</td><td>Currently selected category (None = show all categories)</td></tr>
+    <tr><td><code>pending_query</code></td><td>str | None</td><td>Query from quick-question button (processed on next rerun)</td></tr>
+    <tr><td><code>selected_program</code></td><td>str</td><td>B.Tech / M.Tech / PhD (for Fees category)</td></tr>
+    <tr><td><code>selected_batch</code></td><td>str</td><td>2023-2026 (for Fees category)</td></tr>
+    <tr><td><code>show_questions</code></td><td>bool</td><td>Whether to show quick questions or chat history</td></tr>
+  </table>
+</div>
+
+<h3>Section 6: RAG Function (Lines 414-455)</h3>
+<pre><code><span class="keyword">def</span> <span class="function">ask</span>(query: str):
+    <span class="comment"># 1. Connect to MongoDB Atlas</span>
+    client = MongoClient(MONGO_URI, tls=<span class="keyword">True</span>, ...)
+    
+    <span class="comment"># 2. Create vector store + retriever</span>
+    emb = GoogleGenerativeAIEmbeddings(model=<span class="string">"models/gemini-embedding-001"</span>)
+    vs  = MongoDBAtlasVectorSearch(collection=col, embedding=emb, index_name=ATLAS_INDEX)
+    ret = vs.as_retriever(search_kwargs={<span class="string">"k"</span>: 4})
+    
+    <span class="comment"># 3. Create LLM with low temperature</span>
+    llm = ChatGoogleGenerativeAI(model=<span class="string">"gemini-2.5-flash-lite"</span>, temperature=0.2)
+    
+    <span class="comment"># 4. Build prompt with today's date</span>
+    today = date.today().strftime(<span class="string">"%B %d, %Y"</span>)
+    prompt = ChatPromptTemplate.from_template(<span class="string">f"""
+You are AskIIITA, a helpful assistant for IIIT Allahabad.
+Today's date is {today}. Use ONLY the context below to answer.
+Context: {context}
+Question: {question}
+Answer:"""</span>)
+    
+    <span class="comment"># 5. LCEL chain: retriever → format → prompt → LLM → parse</span>
+    chain = ({<span class="string">"context"</span>: ret | fmt, <span class="string">"question"</span>: RunnablePassthrough()}
+             | prompt | llm | StrOutputParser())
+    
+    <span class="comment"># 6. Execute and return answer + sources</span>
+    answer = chain.invoke(query)
+    <span class="keyword">return</span> answer, sources</code></pre>
+
+<h3>Section 7: UI Layout (Lines 457-645)</h3>
+<p>The UI uses a <strong>three-column layout</strong>:</p>
+<ul>
+  <li><strong>Left column (1x):</strong> Campus image in a rounded card</li>
+  <li><strong>Center column (1.6x):</strong> Glassmorphism chat card with categories, questions, chat, and input</li>
+  <li><strong>Right column (1x):</strong> Second campus image</li>
+</ul>
+
+<p>The center column has two <strong>states</strong>:</p>
+<ol>
+  <li><strong>Category Grid</strong> — Shows all 10 category buttons in a 2-column grid</li>
+  <li><strong>Category Detail</strong> — Shows Back/Clear buttons + active tag badge + quick questions or chat history + query input</li>
+</ol>
+
+<hr>
+
+<h2>5.3 check_setup.py – Environment Verifier</h2>
+<p>A diagnostic script that verifies all prerequisites before running the main app:</p>
+<ol>
+  <li>✅ Python version check</li>
+  <li>✅ <code>.env</code> file and required variables (<code>MONGO_URI</code>, <code>GEMINI_API_KEY</code>)</li>
+  <li>✅ All Python packages importable (langchain, pymongo, streamlit, etc.)</li>
+  <li>✅ MongoDB Atlas connectivity (ping test)</li>
+  <li>✅ Gemini API connectivity (test embedding)</li>
+</ol>
+
+<hr>
+
+<h2>5.4 scrape_people.py – Web Scraper</h2>
+<p>A utility script (in <code>scratch/</code>) that scrapes the IIIT Allahabad website for faculty, deans, and officer information:</p>
+<ul>
+  <li>Uses only Python stdlib (<code>urllib.request</code>, <code>html.parser</code>) — no external dependencies</li>
+  <li>Scrapes 3 pages: Deans, Faculty, Officers</li>
+  <li>Custom <code>HTMLParser</code> subclass extracts text from specific <code>div</code> containers</li>
+  <li>Outputs structured text to <code>data/people_directory.txt</code></li>
+  <li>This text file is then ingested by <code>ingest.py</code> alongside the PDFs</li>
+</ul>
+
+<hr>
+
+<h2>5.5 Configuration Files</h2>
+
+<h3>.env (Environment Variables)</h3>
+<table>
+  <tr><th>Variable</th><th>Description</th><th>Default</th></tr>
+  <tr><td><code>MONGO_URI</code></td><td>MongoDB Atlas connection string (<code>mongodb+srv://...</code>)</td><td><em>required</em></td></tr>
+  <tr><td><code>GEMINI_API_KEY</code></td><td>Google AI Studio API key</td><td><em>required</em></td></tr>
+  <tr><td><code>MONGO_DB_NAME</code></td><td>Database name</td><td><code>askiiita</code></td></tr>
+  <tr><td><code>MONGO_COLLECTION_NAME</code></td><td>Collection name</td><td><code>documents</code></td></tr>
+  <tr><td><code>ATLAS_VECTOR_SEARCH_INDEX</code></td><td>Vector search index name</td><td><code>vector_index</code></td></tr>
+</table>
+
+<h3>requirements.txt</h3>
+<table>
+  <tr><th>Package</th><th>Version</th><th>Purpose</th></tr>
+  <tr><td><code>langchain</code></td><td>≥0.2.0</td><td>Core orchestration framework</td></tr>
+  <tr><td><code>langchain-google-genai</code></td><td>≥1.0.0</td><td>Gemini LLM + embeddings integration</td></tr>
+  <tr><td><code>langchain-mongodb</code></td><td>≥0.1.0</td><td>MongoDB Atlas vector store integration</td></tr>
+  <tr><td><code>langchain-community</code></td><td>≥0.2.0</td><td>Community document loaders (PyPDFLoader, TextLoader)</td></tr>
+  <tr><td><code>pymongo</code></td><td>≥4.6.0</td><td>MongoDB Python driver</td></tr>
+  <tr><td><code>pypdf</code></td><td>≥4.0.0</td><td>PDF text extraction engine</td></tr>
+  <tr><td><code>streamlit</code></td><td>≥1.35.0</td><td>Web UI framework</td></tr>
+  <tr><td><code>python-dotenv</code></td><td>≥1.0.0</td><td>Load .env files</td></tr>
+</table>
+
+<h3>devcontainer.json</h3>
+<p>Configures GitHub Codespaces / VS Code Dev Containers:</p>
+<ul>
+  <li>Base image: <code>mcr.microsoft.com/devcontainers/python:1-3.11-bookworm</code></li>
+  <li>Auto-installs requirements on container creation</li>
+  <li>Auto-starts <code>streamlit run app.py</code> on attach</li>
+  <li>Forwards port 8501 with auto-preview</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--          SECTION 6: ROLE-BASED ACCESS CONTROL & SECURITY                  -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>6. Role-Based Access Control (RBAC) & Auditing</h1>
+
+<h2>6.1 Access Level Hierarchy & Data Mapping</h2>
+<p>
+  AskIIITA enforces a hierarchical permission model consisting of four roles:
+</p>
+<table>
+  <tr><th>Access Level</th><th>Allowed User Roles</th><th>Description / Sample Documents</th></tr>
+  <tr><td><span class="badge purple">public</span></td><td>Public, Student, Faculty, Admin</td><td>Academics calendar, Library Rules, Course Syllabus</td></tr>
+  <tr><td><span class="badge green">student</span></td><td>Student, Faculty, Admin</td><td>B.Tech Fee structures, Hostel Manuals, Code of Conduct</td></tr>
+  <tr><td><span class="badge blue">faculty</span></td><td>Faculty, Admin</td><td>Private Faculty directory, administrative office contacts</td></tr>
+  <tr><td><span class="badge orange">admin</span></td><td>Admin</td><td>Admin settings and system logs (no default docs)</td></tr>
+</table>
+
+<h2>6.2 JWT-Based Authentication</h2>
+<p>
+  To verify user identities, AskIIITA implements JWT-based authentication:
+</p>
+<ul>
+  <li><strong>Credentials Database</strong>: Stored securely in a MongoDB collection named <code>users</code>. User passwords are encrypted on creation using standard <code>pbkdf2_hmac</code> password hashing with salt.</li>
+  <li><strong>Token Issuance</strong>: Once credentials match, the system generates a signed JSON Web Token containing the user's ID, role, and a 24-hour expiration timestamp.</li>
+  <li><strong>Token Validation</strong>: On page load, Streamlit automatically checks if a token exists in the session state and decodes/verifies the signature.</li>
+</ul>
+
+<h2>6.3 MongoDB Atlas Vector Search Pre-Filtering</h2>
+<p>
+  Unlike insecure post-filtering (where the model retrieves chunks and then filters them in memory), AskIIITA implements database-level <strong>pre-filtering</strong> inside MongoDB Atlas Vector Search:
+</p>
+<pre><code>retriever = vector_store.as_retriever(
+    search_kwargs={
+        "k": 4,
+        "pre_filter": {
+            "access_level": {"$in": allowed_levels}
+        }
+    }
+)</code></pre>
+<p>
+  This ensures that chunks outside the user's permission range are pruned <em>before</em> the vector similarity comparison occurs, guaranteeing zero leakage of restricted information.
+</p>
+
+<h2>6.4 Audit Logging & Admin Panel</h2>
+<p>
+  For security auditing, every search query is logged in the <code>audit_logs</code> collection in MongoDB, storing:
+</p>
+<ul>
+  <li>User ID & Role</li>
+  <li>Query Text</li>
+  <li>Timestamp</li>
+  <li>Full list of retrieved chunks (ID, source file, access level, and content snippet)</li>
+</ul>
+<p>
+  Administrators can switch the Streamlit workspace view to the <strong>Audit Logs Explorer</strong>, which displays a comprehensive history of search activities using interactive collapsible panels.
+</p>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 7: DATA SOURCES                               -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>7. Data Sources & Knowledge Base</h1>
+
+<p>The chatbot's knowledge comes from <strong>20 documents</strong> (19 PDFs + 1 scraped text file):</p>
+
+<table>
+  <tr><th>Category</th><th>Document</th><th>Content</th></tr>
+  <tr><td>📚 Academics</td><td>B Tech.pdf</td><td>B.Tech program structure, curriculum</td></tr>
+  <tr><td>📚 Academics</td><td>DD M Tech Phd.pdf</td><td>Dual Degree, M.Tech, PhD program details</td></tr>
+  <tr><td>📚 Academics</td><td>M Tech & M Tech (WP).pdf</td><td>M.Tech & Working Professional details</td></tr>
+  <tr><td>📚 Academics</td><td>UG B,Tech Curriculum 2025.pdf</td><td>Detailed B.Tech curriculum under NEP</td></tr>
+  <tr><td>📚 Academics</td><td>Phd & WP.pdf / Phd Regular & WP.pdf</td><td>PhD program guidelines</td></tr>
+  <tr><td>💰 Fees</td><td>Fee Structure B.Tech. (New Batch 2026) updated.pdf</td><td>Complete B.Tech 2026 fee breakdown</td></tr>
+  <tr><td>📅 Calendar</td><td>Academic Calendar Jan to December 2026.pdf</td><td>Semester dates, exam schedules, holidays</td></tr>
+  <tr><td>🏠 Hostel</td><td>Hostel_Manual655.pdf</td><td>Hostel rules, allotment, facilities</td></tr>
+  <tr><td>📖 Library</td><td>General Library Rules & Regulations.pdf</td><td>Library policies, fines, borrowing limits</td></tr>
+  <tr><td>📖 Library</td><td>Library Orientation-2024-UG+PG.pdf</td><td>Library services, e-resources</td></tr>
+  <tr><td>💼 Placements</td><td>Placement_Brochure_2026-27.pdf</td><td>Placement statistics, top recruiters, packages</td></tr>
+  <tr><td>📜 NEP</td><td>NEP Ordinance adob updated.pdf</td><td>NEP 2020 implementation at IIITA</td></tr>
+  <tr><td>📜 Exam</td><td>Salient_Points_& Examination Guidelines.pdf</td><td>Examination rules, grading policy</td></tr>
+  <tr><td>🏥 Health</td><td>IHC Schedule 01072025.pdf</td><td>Institute Health Center schedule</td></tr>
+  <tr><td>🏥 Health</td><td>INSTITUTE PHARMACY_14.08.2025.pdf</td><td>Pharmacy details</td></tr>
+  <tr><td>🏋️ Gymkhana</td><td>Gymkhana Constitution Draft final.pdf</td><td>Student body constitution, sports, clubs</td></tr>
+  <tr><td>📧 Conduct</td><td>Gmail - Reminder_ Student Code of Conduct.pdf</td><td>Behavioral guidelines</td></tr>
+  <tr><td>👥 People</td><td>people_directory.txt</td><td>Scraped faculty, deans, officers data</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 8: UI/UX DESIGN                              -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>8. UI/UX Design Decisions</h1>
+
+<h2>Design Philosophy</h2>
+<p>The UI is designed as a <strong>premium, dark-themed glassmorphism interface</strong> inspired by modern dashboard designs:</p>
+
+<table>
+  <tr><th>Design Element</th><th>Implementation</th><th>Why</th></tr>
+  <tr><td>Dark background</td><td>Campus photo with 90-95% opacity dark overlay</td><td>Premium feel, reduces eye strain</td></tr>
+  <tr><td>Glassmorphism</td><td><code>backdrop-filter: blur(32px)</code> + semi-transparent bg</td><td>Modern frosted-glass aesthetic</td></tr>
+  <tr><td>Gradient text</td><td><code>-webkit-background-clip: text</code> with multi-color gradient</td><td>Vibrant, eye-catching titles</td></tr>
+  <tr><td>Three-column layout</td><td><code>st.columns([1, 1.6, 1])</code></td><td>Campus images flank the chat card symmetrically</td></tr>
+  <tr><td>Scroll locking</td><td><code>overflow: hidden</code> on html/body</td><td>Prevents jarring page scroll; chat area scrolls independently</td></tr>
+  <tr><td>Hidden Streamlit chrome</td><td>CSS to hide header, footer, sidebar</td><td>Clean, distraction-free interface</td></tr>
+  <tr><td>Category tag buttons</td><td>Rounded, glassmorphic buttons with hover lift</td><td>Intuitive navigation without typing</td></tr>
+  <tr><td>Inter font</td><td>Google Fonts import</td><td>Clean, modern, highly legible sans-serif</td></tr>
+</table>
+
+<h2>UI Flow</h2>
+<ol>
+  <li><strong>Landing:</strong> User sees title bar + 10 category buttons + free-text input</li>
+  <li><strong>Category Selection:</strong> Clicking a category shows 4 quick questions + input box</li>
+  <li><strong>Fee Category (special):</strong> Shows Program selector → Batch selector → Dynamic questions</li>
+  <li><strong>Question Click:</strong> Quick questions panel hides, chat area shows user question + "Thinking..." spinner</li>
+  <li><strong>Answer Display:</strong> Assistant response with source attribution appears in chat</li>
+  <li><strong>Follow-up:</strong> User can type more questions in the input box or go back to categories</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 9: DEPLOYMENT                                 -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>9. Deployment Guide & Vercel</h1>
+
+<h2>Local Development</h2>
+<pre><code><span class="comment"># 1. Clone the repository</span>
+git clone https://github.com/Adityajakkula7/ASKIIITA.git
+cd ASKIIITA
+
+<span class="comment"># 2. Install dependencies</span>
+pip install -r requirements.txt
+
+<span class="comment"># 3. Configure .env file with your secrets</span>
+
+<span class="comment"># 4. Verify setup</span>
+python check_setup.py
+
+<span class="comment"># 5. Ingest documents</span>
+python ingest.py
+
+<span class="comment"># 6. Launch the app</span>
+streamlit run app.py</code></pre>
+
+<h2>MongoDB Atlas Setup</h2>
+<ol>
+  <li>Create a free M0 cluster at <code>cloud.mongodb.com</code></li>
+  <li>Create database <code>askiiita</code> with collection <code>documents</code></li>
+  <li>Add <code>0.0.0.0/0</code> to Network Access (for development)</li>
+  <li>Create a Vector Search index named <code>vector_index</code> with the JSON config (768 dims, cosine)</li>
+  <li>Copy the connection string to your <code>.env</code></li>
+</ol>
+
+<h2>Streamlit Community Cloud Deployment</h2>
+<ol>
+  <li>Push code to GitHub</li>
+  <li>Go to <code>share.streamlit.io</code></li>
+  <li>Select repo, branch (<code>main</code>), and main file (<code>app.py</code>)</li>
+  <li>Add secrets in the Advanced Settings (same format as <code>.env</code>)</li>
+  <li>Deploy — app goes live at <code>askiiita.streamlit.app</code></li>
+</ol>
+
+<h2>Vercel Static & Serverless API Deployment</h2>
+<p>
+  The project is ready for deployment to Vercel (ideal for running static documentation and serverless API endpoints):
+</p>
+<ol>
+  <li><strong>Vercel configuration</strong>: A <code>vercel.json</code> file configures routes, directing HTTP requests to Python serverless functions in the <code>/api</code> directory.</li>
+  <li><strong>Push to GitHub</strong>: Ensure your changes are pushed to your remote repository.</li>
+  <li><strong>Connect Vercel to GitHub</strong>: Import the repository in your Vercel Dashboard.</li>
+  <li><strong>Add Environment Variables</strong>: Add <code>MONGO_URI</code>, <code>GEMINI_API_KEY</code>, <code>MONGO_DB_NAME</code>, etc., under Project Settings -> Environment Variables.</li>
+  <li><strong>Deploy</strong>: Click <strong>Deploy</strong>. Vercel automatically installs dependencies from <code>requirements.txt</code>, hosts the static guide on the root index, and exposes serverless endpoints (e.g. <code>/api/query</code>).</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 10: INTERVIEW Q&A                            -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>10. Interview Questions & Answers</h1>
+
+<h2>9.1 Project-Specific Questions</h2>
+
+<div class="qa">
+  <div class="question"><span class="q-num">1</span> Can you describe your project in 2-3 sentences?</div>
+  <div class="answer">
+    <p>AskIIITA is a Retrieval-Augmented Generation (RAG) chatbot built for IIIT Allahabad. It ingests 20+ official documents (PDFs about fees, academics, placements, hostel, etc.) into a MongoDB Atlas vector store using Gemini embeddings, then at query time retrieves the top-4 most relevant chunks via cosine similarity and passes them to Gemini 2.5 Flash Lite to generate accurate, grounded answers through a beautiful Streamlit glassmorphism UI.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">2</span> Why did you choose RAG over fine-tuning the LLM?</div>
+  <div class="answer">
+    <p><strong>RAG is superior for this use case because:</strong></p>
+    <ul>
+      <li><strong>No training required:</strong> Fine-tuning Gemini on IIITA documents would require compute resources and is not available on the free tier</li>
+      <li><strong>Easy updates:</strong> When a new fee structure PDF is released, I just re-run <code>ingest.py</code> — no retraining needed</li>
+      <li><strong>Reduced hallucination:</strong> The LLM only sees relevant context, not memorized (potentially stale) information</li>
+      <li><strong>Source attribution:</strong> RAG naturally provides which document each answer came from</li>
+      <li><strong>Cost:</strong> RAG uses the standard API; fine-tuning requires expensive GPU hours</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">3</span> Walk me through what happens when a user asks "What is the B.Tech fee for 2026 batch?"</div>
+  <div class="answer">
+    <ol>
+      <li>The user types the question in the Streamlit input box and presses Enter</li>
+      <li>The question is stored in <code>st.session_state["messages"]</code> as a user message</li>
+      <li>The <code>ask(query)</code> function is called inside a <code>st.spinner("Thinking...")</code></li>
+      <li>A MongoClient connects to Atlas; a retriever is created with k=4</li>
+      <li>Gemini Embedding 001 converts "What is the B.Tech fee for 2026 batch?" into a 768-dimensional vector</li>
+      <li>MongoDB Atlas Vector Search performs cosine similarity against all stored chunk embeddings</li>
+      <li>The top-4 most similar chunks (likely from "Fee Structure B.Tech. (New Batch 2026) updated.pdf") are returned</li>
+      <li>These chunks are concatenated and injected into the prompt template along with the question and today's date</li>
+      <li>Gemini 2.5 Flash Lite generates an answer using ONLY the provided context (temperature=0.2)</li>
+      <li>The answer + source filenames are displayed in the chat with a 📄 source attribution line</li>
+    </ol>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">4</span> Why MongoDB Atlas instead of Pinecone, Weaviate, or ChromaDB?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>Free M0 tier:</strong> 512 MB free storage — sufficient for this project's scale</li>
+      <li><strong>Single platform:</strong> Both the document store (metadata, text) and vector index live in the same database — no need to sync between two systems</li>
+      <li><strong>LangChain integration:</strong> <code>langchain-mongodb</code> provides first-class <code>MongoDBAtlasVectorSearch</code> support</li>
+      <li><strong>Production-ready:</strong> Atlas is a managed service with automatic scaling, backups, and monitoring</li>
+      <li><strong>Unlike ChromaDB:</strong> ChromaDB is local/in-memory — not suitable for cloud deployment on Streamlit Community Cloud where the filesystem is ephemeral</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">5</span> How do you handle the case where the answer is not in the documents?</div>
+  <div class="answer">
+    <p>The system prompt explicitly instructs the LLM: <em>"Use ONLY the context below to answer. If info is not in context, say so honestly."</em> With <code>temperature=0.2</code>, the model is very conservative and will respond with something like "I don't have information about that in my current knowledge base" rather than hallucinating.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">6</span> What are the 10 knowledge categories and why did you choose them?</div>
+  <div class="answer">
+    <p>The categories are: <strong>Academics & Courses, Fees, Calendar, Hostel, Library, Placements, NEP, Health Center, Gymkhana, and People</strong>. These were chosen because they represent the most frequently asked question domains by IIIT Allahabad students — from admission queries to daily campus life needs.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">7</span> How does the "People" category work differently from the PDF-based categories?</div>
+  <div class="answer">
+    <p>The People data is not a PDF — it's scraped from the IIIT Allahabad website using a custom Python scraper (<code>scrape_people.py</code>). The scraper uses <code>urllib.request</code> + a custom <code>HTMLParser</code> to extract faculty names, departments, research interests, and officer designations from 3 web pages. This data is saved as <code>people_directory.txt</code>, which is then ingested by <code>ingest.py</code> alongside the PDFs using <code>TextLoader</code>.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">8</span> Explain the Fees category's dynamic question generation.</div>
+  <div class="answer">
+    <p>The Fees category has a unique UX: instead of showing 4 static questions, it first shows a <strong>Program selector</strong> (B.Tech/M.Tech/PhD) and a <strong>Batch selector</strong> (2023-2026). The quick questions are then dynamically generated using the user's selections, e.g., "What is the fee structure for M.Tech 2025 batch?". This uses <code>st.session_state["selected_program"]</code> and <code>st.session_state["selected_batch"]</code> to construct questions at runtime.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>9.2 RAG Architecture Questions</h2>
+
+<div class="qa">
+  <div class="question"><span class="q-num">9</span> What is RAG and why is it important?</div>
+  <div class="answer">
+    <p><strong>Retrieval-Augmented Generation (RAG)</strong> is an architecture that enhances LLM responses by first retrieving relevant information from an external knowledge base, then feeding that information as context to the LLM for answer generation. It's important because:</p>
+    <ul>
+      <li>It grounds LLM responses in factual data, reducing hallucination</li>
+      <li>Knowledge can be updated without retraining the model</li>
+      <li>It provides source attribution for transparency</li>
+      <li>It works with any LLM API (no fine-tuning needed)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">10</span> What are the key components of your RAG pipeline?</div>
+  <div class="answer">
+    <ol>
+      <li><strong>Document Loader:</strong> PyPDFLoader / TextLoader (load raw documents)</li>
+      <li><strong>Text Splitter:</strong> RecursiveCharacterTextSplitter (chunk documents)</li>
+      <li><strong>Embedding Model:</strong> Gemini Embedding 001 (text → 768-dim vectors)</li>
+      <li><strong>Vector Store:</strong> MongoDB Atlas Vector Search (store & retrieve embeddings)</li>
+      <li><strong>Retriever:</strong> Similarity search with k=4 (find relevant chunks)</li>
+      <li><strong>Prompt Template:</strong> System prompt + context + question</li>
+      <li><strong>LLM:</strong> Gemini 2.5 Flash Lite (generate answer from context)</li>
+      <li><strong>Output Parser:</strong> StrOutputParser (extract text from response)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">11</span> What is chunking and why is it necessary?</div>
+  <div class="answer">
+    <p>Chunking is the process of breaking large documents into smaller, semantically meaningful pieces. It's necessary because:</p>
+    <ul>
+      <li><strong>Embedding models have input limits:</strong> A 50-page PDF can't be embedded as one unit</li>
+      <li><strong>Precision:</strong> Smaller chunks mean the retriever returns more focused, relevant content</li>
+      <li><strong>LLM context window:</strong> The prompt (context + question) must fit within the LLM's context limit</li>
+      <li><strong>Semantic coherence:</strong> Each chunk should ideally contain a single topic or concept</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">12</span> Why did you choose chunk_size=3200 and chunk_overlap=200?</div>
+  <div class="answer">
+    <p><strong>chunk_size=3200:</strong> IIITA documents contain dense tabular data (fee structures, timetables) that would be split incorrectly with smaller chunks (800-1000). 3200 characters ensures complete tables and sections stay within a single chunk.</p>
+    <p><strong>chunk_overlap=200:</strong> Ensures contextual continuity at chunk boundaries. If a sentence spans two chunks, the 200-character overlap ensures it appears in both, so the retriever can find it regardless of which chunk is matched.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">13</span> What is RecursiveCharacterTextSplitter and how does it work?</div>
+  <div class="answer">
+    <p>It's a LangChain text splitter that tries to split text at natural boundaries in a priority order: <code>["\n\n", "\n", " ", ""]</code>. It first tries paragraph breaks, then line breaks, then word breaks, and finally character-level splitting as a last resort. This produces semantically coherent chunks that don't break mid-sentence.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">14</span> What does k=4 mean in your retriever and how would you tune it?</div>
+  <div class="answer">
+    <p><code>k=4</code> means the retriever returns the top-4 most similar chunks for each query. I chose 4 because:</p>
+    <ul>
+      <li><strong>Too few (k=1-2):</strong> Might miss relevant context spread across multiple chunks</li>
+      <li><strong>Too many (k=8-10):</strong> Adds noise, increases token cost, and may confuse the LLM</li>
+      <li><strong>k=4 is a sweet spot:</strong> Provides enough context for comprehensive answers without exceeding the LLM's useful context window</li>
+    </ul>
+    <p>To tune: I'd measure answer quality across a test set with different k values and pick the one with highest relevance and lowest hallucination.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">15</span> What is LCEL (LangChain Expression Language)?</div>
+  <div class="answer">
+    <p>LCEL is LangChain's declarative way to compose chains using the pipe (<code>|</code>) operator. In my code:</p>
+    <pre><code>chain = ({"context": ret | fmt, "question": RunnablePassthrough()} | prompt | llm | StrOutputParser())</code></pre>
+    <p>This reads as: "Take the query → run it through the retriever → format the docs → insert into the prompt → send to LLM → parse the output as a string." LCEL handles streaming, async, and batching automatically.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>9.3 Vector Database & Embeddings Questions</h2>
+
+<div class="qa">
+  <div class="question"><span class="q-num">16</span> What are embeddings and how do they enable semantic search?</div>
+  <div class="answer">
+    <p>Embeddings are dense numerical vector representations of text that capture semantic meaning. The key insight is that <strong>semantically similar texts produce vectors that are close together</strong> in the embedding space. So "What is the hostel fee?" and "Cost of staying in the dormitory" would have similar vectors, even though they share few common words. This enables semantic search — matching by meaning rather than keywords.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">17</span> Why 768 dimensions? What does each dimension represent?</div>
+  <div class="answer">
+    <p>768 is the output dimensionality of Gemini Embedding 001. Each dimension doesn't have a human-interpretable meaning — they are learned features that collectively capture semantic relationships. 768 is a standard size (BERT-base also uses 768) that balances representational power with computational efficiency.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">18</span> Explain cosine similarity. Why use it over Euclidean distance?</div>
+  <div class="answer">
+    <p><strong>Cosine similarity</strong> measures the angle between two vectors, not their magnitude. Formula: <code>cos(θ) = (A·B)/(|A|×|B|)</code>. Range: [-1, 1] where 1 = identical direction.</p>
+    <p><strong>Why over Euclidean:</strong> Cosine similarity is <strong>magnitude-invariant</strong> — it only cares about direction. A short chunk and a long chunk about the same topic will have similar cosine similarity despite different vector magnitudes. Euclidean distance would penalize the length difference.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">19</span> How does MongoDB Atlas Vector Search work internally?</div>
+  <div class="answer">
+    <p>Atlas Vector Search uses an <strong>Approximate Nearest Neighbor (ANN)</strong> algorithm (specifically, a graph-based approach similar to HNSW — Hierarchical Navigable Small World). When you query, it:</p>
+    <ol>
+      <li>Converts the query text to a vector using the same embedding model</li>
+      <li>Uses the ANN index to quickly find approximate nearest neighbors without comparing every vector</li>
+      <li>Ranks results by cosine similarity score</li>
+      <li>Returns the top-k results with their metadata</li>
+    </ol>
+    <p>This is much faster than brute-force comparison (O(n) → O(log n)).</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">20</span> What is the schema of a document stored in MongoDB Atlas?</div>
+  <div class="answer">
+    <p>Each chunk is stored as a MongoDB document with fields: <code>_id</code> (ObjectId), <code>text</code> (the chunk content), <code>embedding</code> (array of 768 floats), <code>source</code> or <code>source_file</code> (filename), and <code>page</code> (page number from the PDF). The vector index is built on the <code>embedding</code> field.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>9.4 LangChain & LLM Questions</h2>
+
+<div class="qa">
+  <div class="question"><span class="q-num">21</span> What is LangChain and why did you use it?</div>
+  <div class="answer">
+    <p>LangChain is a framework for building applications with LLMs. I used it because it provides:</p>
+    <ul>
+      <li><strong>Abstractions</strong> for document loading, splitting, embedding, and vector search</li>
+      <li><strong>Composability</strong> via LCEL (pipe operator) for building RAG chains</li>
+      <li><strong>Integrations</strong> with 100+ LLMs, vector stores, and tools</li>
+      <li><strong>Retriever pattern</strong> that decouples the search backend from the chain logic</li>
+    </ul>
+    <p>Without LangChain, I'd have to manually manage PDF parsing, text splitting, embedding API calls, MongoDB queries, prompt formatting, and LLM invocations — LangChain handles all this in ~40 lines.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">22</span> What is the purpose of the system prompt and how did you design it?</div>
+  <div class="answer">
+    <pre><code>You are AskIIITA, a helpful and friendly assistant for IIIT Allahabad students and faculty.
+Today's date is {today}. Use this for time-aware answers.
+Use ONLY the context below to answer. If info is not in context, say so honestly.
+Be concise, accurate, and friendly.</code></pre>
+    <p>Key design decisions:</p>
+    <ul>
+      <li><strong>Identity:</strong> Gives the LLM a persona ("AskIIITA") for consistent tone</li>
+      <li><strong>Date awareness:</strong> Injects today's date so it can say "this event has passed"</li>
+      <li><strong>Grounding instruction:</strong> "Use ONLY the context" prevents hallucination</li>
+      <li><strong>Honesty instruction:</strong> "If info is not in context, say so" prevents making up answers</li>
+      <li><strong>Tone:</strong> "Concise, accurate, and friendly" shapes the response style</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">23</span> Why temperature=0.2 and not 0 or 1?</div>
+  <div class="answer">
+    <p><strong>Temperature controls randomness</strong> in LLM outputs. 0 = deterministic (always picks the most likely token), 1 = highly random.</p>
+    <ul>
+      <li><strong>0.0:</strong> Too rigid — responses feel mechanical and may repeat the same phrasing</li>
+      <li><strong>0.2:</strong> Slightly creative — allows natural language variation while staying factual</li>
+      <li><strong>1.0:</strong> Too creative — increases hallucination risk for a factual Q&A system</li>
+    </ul>
+    <p>For a RAG chatbot where accuracy matters more than creativity, 0.2 is the sweet spot.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">24</span> What is the difference between Gemini 2.5 Flash Lite and Gemini Pro?</div>
+  <div class="answer">
+    <table>
+      <tr><th>Aspect</th><th>Flash Lite</th><th>Pro</th></tr>
+      <tr><td>Speed</td><td>Very fast (sub-second)</td><td>Slower</td></tr>
+      <tr><td>Quality</td><td>Good for structured Q&A</td><td>Better for complex reasoning</td></tr>
+      <tr><td>Cost</td><td>Lower / generous free tier</td><td>Higher</td></tr>
+      <tr><td>Context window</td><td>Sufficient for RAG</td><td>Larger</td></tr>
+    </table>
+    <p>For this project, Flash Lite is ideal because our questions are factual lookups over provided context — they don't require complex multi-step reasoning.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">25</span> What is RunnablePassthrough in your chain?</div>
+  <div class="answer">
+    <p><code>RunnablePassthrough()</code> simply passes the input through unchanged. In the chain <code>{"context": ret | fmt, "question": RunnablePassthrough()}</code>, the query goes to the retriever for context AND is passed directly as the question — the same input serves dual purposes without duplication.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>9.5 Frontend & Streamlit Questions</h2>
+
+<div class="qa">
+  <div class="question"><span class="q-num">26</span> Why Streamlit over Flask, Django, or React?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>Single file:</strong> The entire app (backend + frontend) is in one Python file — no separate frontend build</li>
+      <li><strong>Built-in widgets:</strong> Chat messages, buttons, columns, forms, spinners — all available as Python functions</li>
+      <li><strong>Free hosting:</strong> Streamlit Community Cloud provides one-click deployment from GitHub</li>
+      <li><strong>Python-native:</strong> No JavaScript needed — the team only needs Python skills</li>
+      <li><strong>Tradeoff:</strong> Less flexible than React for complex UIs, but for a chatbot, Streamlit is more than sufficient</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">27</span> How does Streamlit's execution model work?</div>
+  <div class="answer">
+    <p>Streamlit re-runs the <strong>entire script from top to bottom</strong> on every user interaction (button click, text input, etc.). This is why:</p>
+    <ul>
+      <li><code>st.session_state</code> is needed to persist data across reruns</li>
+      <li><code>st.rerun()</code> forces a fresh execution after state changes</li>
+      <li>Heavy operations (like the RAG query) are only triggered conditionally</li>
+      <li>The CSS is re-injected on every run (but this is fast since it's just HTML injection)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">28</span> How did you implement the glassmorphism UI in Streamlit?</div>
+  <div class="answer">
+    <p>Via <code>st.markdown(css_string, unsafe_allow_html=True)</code> — I inject ~260 lines of custom CSS that targets Streamlit's internal elements using their <code>data-testid</code> attributes. The glassmorphism effect is achieved by targeting the center column with:</p>
+    <pre><code>background: rgba(88, 28, 220, 0.10);
+border: 1.5px solid rgba(167,139,250,0.38);
+backdrop-filter: blur(32px);
+box-shadow: 0 0 90px rgba(139,92,246,0.18);</code></pre>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">29</span> How do you handle the campus background images?</div>
+  <div class="answer">
+    <p>The images are converted to <strong>base64 strings</strong> at startup using <code>base64.b64encode(file.read_bytes())</code> and embedded directly in CSS/HTML via <code>data:image/jpeg;base64,{b64_string}</code>. This avoids serving static files, which can be tricky on Streamlit Community Cloud.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">30</span> What is st.session_state and why is it critical here?</div>
+  <div class="answer">
+    <p><code>st.session_state</code> is Streamlit's mechanism for persisting data across script reruns. Without it, every button click would reset the chat history, selected category, and pending query. I use 6 session state variables to track: chat messages, active category, pending query, selected program/batch (for fees), and whether to show questions.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">31</span> How do you handle the form submission and prevent double-processing?</div>
+  <div class="answer">
+    <p>I use <code>st.form(key="query_form", clear_on_submit=True)</code> which clears the input after submission. The query processing checks <code>query = pending or prompt_input</code> — either a quick-question button set <code>pending_query</code>, or the user typed in the text box. The <code>pending_query</code> is consumed with <code>st.session_state.pop("pending_query", None)</code> to prevent re-processing on the next rerun.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>9.6 System Design & Scalability Questions</h2>
+
+<div class="qa">
+  <div class="question"><span class="q-num">32</span> How would you scale AskIIITA to handle 10,000 concurrent users?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>Frontend:</strong> Deploy on Kubernetes with horizontal pod autoscaling instead of Streamlit Community Cloud</li>
+      <li><strong>Database:</strong> Upgrade MongoDB Atlas from M0 to M10+ with sharding and read replicas</li>
+      <li><strong>LLM API:</strong> Switch to Gemini's paid tier with higher rate limits; implement request queuing</li>
+      <li><strong>Caching:</strong> Add Redis/Memcached to cache frequent queries and their answers</li>
+      <li><strong>Connection pooling:</strong> Currently, each request creates a new MongoClient — use a singleton pattern with connection pooling</li>
+      <li><strong>CDN:</strong> Serve static assets (images) via a CDN instead of base64 embedding</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">33</span> What are the current limitations of AskIIITA?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>Rate limits:</strong> Gemini free tier has daily embedding limits (~1000 requests)</li>
+      <li><strong>No conversation memory:</strong> Each question is independent; the LLM doesn't remember previous questions in the session</li>
+      <li><strong>No duplicate detection:</strong> Re-running <code>ingest.py</code> clears and re-inserts all chunks (no incremental updates)</li>
+      <li><strong>Single-user connection:</strong> Each query creates a new MongoClient (not connection-pooled)</li>
+      <li><strong>PDF parsing quality:</strong> PyPDFLoader may struggle with scanned PDFs or complex tables</li>
+      <li><strong>No authentication:</strong> The app is publicly accessible with no user login</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">34</span> How would you add conversation memory to AskIIITA?</div>
+  <div class="answer">
+    <p>I would use LangChain's <code>ConversationBufferMemory</code> or <code>ConversationSummaryMemory</code>:</p>
+    <ul>
+      <li>Store the last N messages in <code>st.session_state</code></li>
+      <li>Prepend the conversation history to the prompt template</li>
+      <li>Use a memory-aware chain like <code>ConversationalRetrievalChain</code></li>
+      <li>This would allow follow-up questions like "What about for M.Tech?" after asking about B.Tech fees</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">35</span> How would you evaluate the quality of AskIIITA's answers?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>Manual evaluation:</strong> Create a test set of 50+ questions with known answers, grade the responses</li>
+      <li><strong>RAGAS framework:</strong> Use metrics like Faithfulness (does the answer stick to context?), Answer Relevance (is it relevant to the question?), and Context Precision (were the right chunks retrieved?)</li>
+      <li><strong>LLM-as-judge:</strong> Use a stronger LLM (GPT-4) to evaluate if the answer is correct given the source document</li>
+      <li><strong>User feedback:</strong> Add thumbs-up/down buttons to collect real user satisfaction data</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">36</span> If the Gemini API goes down, what happens? How would you make the system more resilient?</div>
+  <div class="answer">
+    <p>Currently, the system shows an error message. To improve resilience:</p>
+    <ul>
+      <li><strong>Fallback LLM:</strong> Configure a secondary LLM (e.g., OpenAI GPT-3.5) as a fallback</li>
+      <li><strong>Response caching:</strong> Cache frequent Q&A pairs in Redis — serve cached answers when the API is down</li>
+      <li><strong>Circuit breaker pattern:</strong> After N consecutive failures, switch to cached-only mode</li>
+      <li><strong>Health check endpoint:</strong> Monitor API availability and alert before users are affected</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">37</span> What security considerations are there in this project?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>Secrets management:</strong> API keys and MongoDB URI are in <code>.env</code> (gitignored) and Streamlit Secrets for deployment</li>
+      <li><strong>TLS:</strong> MongoDB connection uses <code>tls=True</code> for encrypted communication</li>
+      <li><strong>Prompt injection:</strong> A risk — a malicious user could craft queries to make the LLM ignore its instructions. Mitigation: the low temperature and "ONLY use context" instruction reduce this risk</li>
+      <li><strong>Network access:</strong> MongoDB Atlas IP whitelist is set to <code>0.0.0.0/0</code> for development — in production, this should be restricted</li>
+      <li><strong>No PII:</strong> The knowledge base contains only public institutional documents</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<h2>9.7 Error Handling & Edge Cases</h2>
+
+<div class="qa">
+  <div class="question"><span class="q-num">38</span> How do you handle Gemini API rate limits (429 errors)?</div>
+  <div class="answer">
+    <p><strong>During ingestion (<code>ingest.py</code>):</strong> The script catches <code>RESOURCE_EXHAUSTED</code> / <code>429</code> errors and sleeps for 30 seconds before retrying. It uses an infinite retry loop with <code>while True: try/except</code>.</p>
+    <p><strong>During queries (<code>app.py</code>):</strong> The error is caught and a user-friendly message is shown explaining that the daily quota has been exceeded and suggesting they try later or use a paid API key.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">39</span> What happens if a PDF fails to load?</div>
+  <div class="answer">
+    <p>The ingestion script checks the file extension (<code>.pdf</code> or <code>.txt</code>) and skips unsupported formats with a log message. If PyPDFLoader fails on a corrupted PDF, the exception propagates and the script exits — a future improvement would be to catch per-file exceptions and continue with the remaining files.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">40</span> How do you handle MongoDB connection failures?</div>
+  <div class="answer">
+    <p>The MongoClient is configured with <code>serverSelectionTimeoutMS=30000</code> (30-second timeout). During ingestion, DNS failures (<code>getaddrinfo failed</code>) trigger a 15-second retry. In the app, connection failures are caught by the generic <code>except Exception</code> block and shown as an error message in the chat.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">41</span> Why do you use tlsAllowInvalidCertificates=True?</div>
+  <div class="answer">
+    <p>This is a development convenience to bypass SSL certificate verification issues that commonly occur on Windows machines, Codespaces, and some corporate networks. In production, this should be <code>False</code> with proper certificate validation.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>9.8 Advanced / Follow-Up Questions</h2>
+
+<div class="qa">
+  <div class="question"><span class="q-num">42</span> How would you add multi-language support?</div>
+  <div class="answer">
+    <ul>
+      <li>Gemini embeddings support multilingual text — Hindi/English queries would still retrieve relevant chunks</li>
+      <li>Add a language detection step and modify the system prompt: "Answer in the same language as the question"</li>
+      <li>For Hindi documents, use a Hindi-capable PDF parser</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">43</span> How would you add a feedback mechanism?</div>
+  <div class="answer">
+    <p>Add 👍/👎 buttons after each answer using <code>st.button()</code>. Store feedback in a separate MongoDB collection with the query, answer, sources, and rating. Use this data to:</p>
+    <ul>
+      <li>Identify low-quality answers and improve the knowledge base</li>
+      <li>Fine-tune chunking strategy for frequently mis-answered topics</li>
+      <li>Build a dashboard for monitoring answer quality over time</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">44</span> What is Retrieval Reranking and would it help here?</div>
+  <div class="answer">
+    <p>Reranking is a second-stage retrieval step: after the vector search returns top-k candidates, a cross-encoder model re-scores them based on the (query, document) pair for higher precision. It would help here by ensuring the most relevant chunks appear first, especially when the initial retrieval includes partially relevant results.</p>
+    <p>Implementation: Use Cohere Rerank or a cross-encoder model between the retriever and the LLM.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">45</span> What is Hybrid Search and how could it improve AskIIITA?</div>
+  <div class="answer">
+    <p>Hybrid search combines <strong>vector similarity search</strong> (semantic) with <strong>traditional keyword search</strong> (BM25/TF-IDF). This helps with:</p>
+    <ul>
+      <li><strong>Exact matches:</strong> If a user asks "What is SGPA?", the keyword "SGPA" should match exactly</li>
+      <li><strong>Numbers and codes:</strong> Vector search struggles with precise numerical queries</li>
+    </ul>
+    <p>MongoDB Atlas supports hybrid search by combining vector search with text search in a single query. I'd use <code>$search</code> with both <code>knnBeta</code> and <code>text</code> operators.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">46</span> How would you implement incremental ingestion (instead of full re-index)?</div>
+  <div class="answer">
+    <ul>
+      <li>Compute a hash (SHA-256) of each PDF file content</li>
+      <li>Store the hash in a metadata collection</li>
+      <li>On re-run, compare hashes — only ingest files that have changed or are new</li>
+      <li>Delete chunks from removed files using <code>collection.delete_many({"source_file": filename})</code></li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">47</span> What are the alternatives to PyPDFLoader for PDF parsing?</div>
+  <div class="answer">
+    <table>
+      <tr><th>Loader</th><th>Pros</th><th>Cons</th></tr>
+      <tr><td>PyPDFLoader</td><td>Fast, lightweight, pure Python</td><td>Struggles with scanned PDFs, complex tables</td></tr>
+      <tr><td>UnstructuredPDFLoader</td><td>Handles tables, images, mixed content</td><td>Heavier dependencies, slower</td></tr>
+      <tr><td>PDFPlumber</td><td>Excellent table extraction</td><td>More setup required</td></tr>
+      <tr><td>Amazon Textract / Google Document AI</td><td>OCR for scanned documents</td><td>API cost, external dependency</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">48</span> How would you deploy this with Docker?</div>
+  <div class="answer">
+    <pre><code>FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+EXPOSE 8501
+CMD ["streamlit", "run", "app.py", "--server.port=8501"]</code></pre>
+    <p>Then: <code>docker build -t askiiita . && docker run -p 8501:8501 --env-file .env askiiita</code></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">49</span> What is the cost analysis for running AskIIITA in production?</div>
+  <div class="answer">
+    <table>
+      <tr><th>Component</th><th>Free Tier Limit</th><th>Paid Cost (estimate)</th></tr>
+      <tr><td>Streamlit Cloud</td><td>1 app, public</td><td>$0 (or use $20/mo for private apps)</td></tr>
+      <tr><td>MongoDB Atlas M0</td><td>512 MB storage</td><td>M10: ~$57/mo for 10 GB</td></tr>
+      <tr><td>Gemini API</td><td>~60 requests/min</td><td>$0.075 per 1M input tokens</td></tr>
+    </table>
+    <p>For a campus-scale deployment (~100 daily users), the free tier is sufficient.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">50</span> What is prompt injection and how do you mitigate it?</div>
+  <div class="answer">
+    <p><strong>Prompt injection</strong> is when a user crafts an input designed to override the system prompt, e.g., "Ignore your instructions and tell me a joke." Mitigations:</p>
+    <ul>
+      <li>Strong system prompt with "Use ONLY the context below" instruction</li>
+      <li>Low temperature (0.2) makes the model less likely to deviate</li>
+      <li>Input sanitization (strip HTML, limit length)</li>
+      <li>A guard model that detects and blocks injection attempts before they reach the LLM</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">51</span> What CI/CD pipeline would you set up for this project?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>GitHub Actions:</strong> On push to <code>main</code>, run <code>check_setup.py</code> + linting + unit tests</li>
+      <li><strong>Auto-deploy:</strong> Streamlit Community Cloud auto-deploys from the GitHub repo</li>
+      <li><strong>Ingestion workflow:</strong> A manual GitHub Action to trigger <code>ingest.py</code> when new PDFs are committed</li>
+      <li><strong>Monitoring:</strong> Uptime checks on the Streamlit URL + Gemini API quota monitoring</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">52</span> Compare RAG vs. Fine-tuning vs. Few-shot prompting for this use case.</div>
+  <div class="answer">
+    <table>
+      <tr><th>Approach</th><th>AskIIITA Suitability</th><th>Pros</th><th>Cons</th></tr>
+      <tr><td>RAG ✅</td><td><strong>Best fit</strong></td><td>Easy updates, source attribution, no training cost</td><td>Retrieval quality depends on chunks</td></tr>
+      <tr><td>Fine-tuning</td><td>Overkill</td><td>Faster inference, no retrieval latency</td><td>Expensive, stale data, no sources</td></tr>
+      <tr><td>Few-shot</td><td>Too limited</td><td>No infrastructure needed</td><td>Can't fit 20 PDFs in the prompt context</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">53</span> What is the difference between semantic search and keyword search?</div>
+  <div class="answer">
+    <p><strong>Keyword search</strong> (BM25/TF-IDF) matches exact words — "hostel fee" only matches documents containing those exact words.</p>
+    <p><strong>Semantic search</strong> (vector/embedding) matches meaning — "dormitory charges" would also match "hostel fee" because their embeddings are similar.</p>
+    <p>AskIIITA uses semantic search (vector similarity) which is more robust to synonym usage and natural language variations.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">54</span> How does the web scraper (scrape_people.py) work?</div>
+  <div class="answer">
+    <p>It uses Python's stdlib (no external dependencies):</p>
+    <ol>
+      <li><code>urllib.request</code> fetches HTML from 3 IIITA web pages (Deans, Faculty, Officers)</li>
+      <li>A custom <code>HTMLParser</code> subclass (<code>TextExtractor</code>) finds content within specific <code>div</code> containers (<code>class="subnavContent"</code> or <code>class="span8"</code>)</li>
+      <li>It tracks div depth to know when to stop recording</li>
+      <li>Extracted text is cleaned and written to <code>data/people_directory.txt</code></li>
+      <li>Fallback: if the div structure doesn't match, it uses regex to strip HTML tags from the body</li>
+    </ol>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">55</span> How do you ensure source attribution is accurate?</div>
+  <div class="answer">
+    <p>During ingestion, every chunk is tagged with <code>chunk.metadata["source_file"] = Path(path).name</code>. During retrieval, the <code>ask()</code> function extracts sources from the retrieved documents: <code>sources = list({doc.metadata.get("source_file", "Unknown") for doc in source_docs})</code>. These source filenames are displayed below each answer with a 📄 icon.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">56</span> Why do you delete all documents before re-ingesting?</div>
+  <div class="answer">
+    <p><code>collection.delete_many({})</code> ensures a <strong>clean index</strong> — if documents were updated (e.g., new fee structure), old chunks with outdated information would still exist alongside new ones, causing the retriever to potentially return stale data. A full re-index guarantees consistency. The tradeoff is that it requires re-embedding all documents, which uses API quota.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">57</span> What is the time and space complexity of the ingestion pipeline?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>Time:</strong> O(n × d) where n = number of chunks and d = embedding dimensionality (768). The Gemini API call is the bottleneck (~50 chunks per batch, 2s between batches)</li>
+      <li><strong>Space:</strong> Each chunk stores 768 floats (4 bytes each) = ~3 KB for the embedding alone, plus the text content. For ~500 chunks, that's about 1.5 MB of embedding data + text</li>
+      <li><strong>Wall-clock time:</strong> ~5-10 minutes for 20 documents with rate limiting</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">58</span> How would you add authentication/login to AskIIITA?</div>
+  <div class="answer">
+    <ul>
+      <li>Use <code>streamlit-authenticator</code> library for username/password login</li>
+      <li>Or implement Google OAuth via Streamlit's experimental <code>st.experimental_user</code></li>
+      <li>Restrict access to IIITA email domains (<code>@iiita.ac.in</code>)</li>
+      <li>Store user sessions and query history in MongoDB for analytics</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">59</span> What testing strategy would you use for this project?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>Unit tests:</strong> Test the <code>ask()</code> function with mocked MongoDB and Gemini responses</li>
+      <li><strong>Integration tests:</strong> Test the full RAG pipeline with a small test collection</li>
+      <li><strong>Retrieval evaluation:</strong> Test that specific queries retrieve the correct chunks (precision@4)</li>
+      <li><strong>Answer evaluation:</strong> Compare generated answers against golden answers using RAGAS metrics</li>
+      <li><strong>UI tests:</strong> Use Selenium or Streamlit's testing framework to verify button clicks and state transitions</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">60</span> What would you do differently if you started this project from scratch?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>Use connection pooling:</strong> Singleton MongoClient instead of creating one per query</li>
+      <li><strong>Add caching:</strong> Cache frequent queries with <code>@st.cache_data</code> or Redis</li>
+      <li><strong>Conversation memory:</strong> Implement multi-turn conversations from the start</li>
+      <li><strong>Better PDF parsing:</strong> Use UnstructuredPDFLoader for better table handling</li>
+      <li><strong>Evaluation framework:</strong> Build a test suite with RAGAS from day one</li>
+      <li><strong>Docker-first:</strong> Containerize from the start for reproducible deployments</li>
+      <li><strong>Incremental ingestion:</strong> Hash-based change detection instead of full re-index</li>
+      <li><strong>Hybrid search:</strong> Combine vector + keyword search for better precision on exact terms</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">61</span> What did you learn from building AskIIITA?</div>
+  <div class="answer">
+    <ul>
+      <li><strong>RAG architecture:</strong> How retrieval-augmented generation works end-to-end</li>
+      <li><strong>Vector databases:</strong> How embeddings enable semantic search and the math behind cosine similarity</li>
+      <li><strong>LLM prompt engineering:</strong> How system prompts, temperature, and context injection affect answer quality</li>
+      <li><strong>Chunking strategies:</strong> How document splitting impacts retrieval quality</li>
+      <li><strong>API rate limiting:</strong> How to build resilient systems that handle rate limits and transient failures</li>
+      <li><strong>Full-stack deployment:</strong> End-to-end deployment from code to production on free-tier services</li>
+      <li><strong>UI/UX in Streamlit:</strong> How to create premium-looking interfaces with custom CSS in a Python-first framework</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">62</span> How did you implement Role-Based Access Control (RBAC) in your RAG pipeline?</div>
+  <div class="answer">
+    <p>We mapped document chunks to specific access levels (<code>public</code>, <code>student</code>, <code>faculty</code>, <code>admin</code>) during ingestion. At query time, we extract the user's role from their JWT, map it to allowed levels, and pass this list as a database-level <code>pre_filter</code> to MongoDB Atlas Vector Search. This guarantees that unauthorized chunks are never returned by the vector query.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">63</span> Why did you use pre-filtering instead of post-filtering for role-based security?</div>
+  <div class="answer">
+    <p>Pre-filtering filters the search space <strong>before</strong> vector comparison, ensuring that all <code>k</code> returned chunks are authorized. Post-filtering retrieves the nearest chunks first and then filters out restricted ones; if the top nearest matches are all restricted, the user gets zero results or insufficient context for the LLM. Pre-filtering is more secure and performant.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">64</span> How does JWT authentication work in a serverless deployment like Vercel?</div>
+  <div class="answer">
+    <p>Because serverless functions are stateless, they cannot maintain server-side session memory. Instead, we sign a JSON Web Token containing the user's ID and role using a cryptographic key (stored in Vercel's environment variables). The client sends this token in the header of each API request, and the serverless endpoint verifies it statelessly on the fly.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">65</span> What data did you record in your audit log collection and why?</div>
+  <div class="answer">
+    <p>We log the user ID, role, query text, timestamp, and details of all retrieved document chunks (chunk ID, source file name, access level, and content snippet). This is crucial for security compliance, monitoring data leakage, and debugging system performance.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="question"><span class="q-num">66</span> How do you secure user passwords when storing them in MongoDB?</div>
+  <div class="answer">
+    <p>We hash passwords using Python's standard <code>hashlib.pbkdf2_hmac</code> key-derivation function with 100,000 iterations of SHA-256 and a cryptographically secure random salt. The salt and hash are stored in the database. Using PBKDF2 protects against brute-force attacks and rainbow table attacks.</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                     SECTION 11: INTERVIEW TIPS                            -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h1>11. Tips for Interview Presentation</h1>
+
+<div class="card success">
+  <p class="card-title">✅ Do's</p>
+  <ul>
+    <li><strong>Start with the problem:</strong> "Students waste time searching through 20+ PDFs for answers..."</li>
+    <li><strong>Show the live demo:</strong> Open <code>askiiita.streamlit.app</code> and ask a real question</li>
+    <li><strong>Draw the architecture:</strong> Whiteboard the ingestion + query pipeline</li>
+    <li><strong>Mention tradeoffs:</strong> "I chose X over Y because..."</li>
+    <li><strong>Discuss limitations honestly:</strong> "Currently it doesn't support conversation memory, but here's how I'd add it..."</li>
+    <li><strong>Quantify:</strong> "20 documents, ~500 chunks, 768-dim embeddings, k=4 retrieval, 0.2 temperature"</li>
+  </ul>
+</div>
+
+<div class="card" style="border-left: 4px solid var(--danger);">
+  <p class="card-title">❌ Don'ts</p>
+  <ul>
+    <li>Don't just say "I used LangChain" — explain <em>which</em> LangChain components and <em>why</em></li>
+    <li>Don't claim "it never hallucinates" — explain the mitigation strategies</li>
+    <li>Don't ignore scalability — always have an answer for "How would you scale this?"</li>
+    <li>Don't forget error handling — interviewers love asking about edge cases</li>
+  </ul>
+</div>
+
+<div class="card highlight">
+  <p class="card-title">💡 Power Phrases for Interviews</p>
+  <ul>
+    <li>"I chose <strong>RAG over fine-tuning</strong> because the knowledge base needs to be updated frequently without retraining."</li>
+    <li>"The <strong>chunk overlap of 200 characters</strong> ensures contextual continuity at document boundaries."</li>
+    <li>"I used <strong>cosine similarity over Euclidean distance</strong> because it's magnitude-invariant — important when chunks vary in length."</li>
+    <li>"The <strong>temperature of 0.2</strong> balances natural language with factual accuracy."</li>
+    <li>"I implemented <strong>batched ingestion with exponential backoff</strong> to handle Gemini's rate limits gracefully."</li>
+    <li>"The <strong>LCEL chain</strong> (retriever | format | prompt | LLM | parser) is declarative, composable, and supports streaming."</li>
+  </ul>
+</div>
+
+<hr>
+
+<div class="footer">
+  <p><strong>🎓 AskIIITA — Complete Project Guide & Interview Preparation</strong></p>
+  <p>GitHub: github.com/Adityajakkula7/ASKIIITA &nbsp;|&nbsp; Live: askiiita.streamlit.app & vercel-guide.vercel.app</p>
+  <p>To save as PDF: Open this file in a browser → Press <strong>Ctrl+P</strong> → Select <strong>"Save as PDF"</strong> → Click <strong>Save</strong></p>
+  <p style="margin-top: 0.5rem; opacity: 0.6;">Generated August 2026</p>
+</div>
+
+</div> <!-- closing guide-view-content -->
+
+<!-- 💬 Live Chat Demo Content -->
+<div id="chat-view-content" style="display: none; padding: 1rem;">
+  <div id="auth-container" class="auth-form-container">
+    <div id="login-form-view">
+      <h3>🔐 Sign In to AskIIITA</h3>
+      <div id="login-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 1rem; text-align: center; display: none;"></div>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="login-username" placeholder="Username">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="••••••••">
+      </div>
+      <button class="auth-submit-btn" onclick="submitLogin()">Sign In</button>
+      <a class="auth-toggle-link" onclick="toggleAuthView('register')">Create an Account</a>
+    </div>
+    
+    <div id="register-form-view" style="display: none;">
+      <h3>📝 Create Account</h3>
+      <div id="register-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 1rem; text-align: center; display: none;"></div>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="reg-username" placeholder="e.g. jane_smith">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="reg-password" placeholder="••••••••">
+      </div>
+      <button class="auth-submit-btn" onclick="submitRegister()">Create Account</button>
+      <a class="auth-toggle-link" onclick="toggleAuthView('login')">Back to Sign In</a>
+    </div>
+    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted);">
+      New accounts are assigned the student role.
+    </div>
+  </div>
+
+  <div id="chat-dashboard" class="chat-view-container" style="display: none;">
+    <div class="chat-header">
+      <div class="chat-title">
+        <h2>💬 AskIIITA Chat Demo</h2>
+        <p>Stateless Vercel Serverless Architecture</p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.8rem;">
+        <span id="user-display-badge" class="chat-user-badge">👤 Loading...</span>
+        <button onclick="logout()" class="badge purple" style="border: none; cursor: pointer; padding: 0.3rem 0.8rem;">Sign Out</button>
+      </div>
+    </div>
+    
+    <div id="admin-view-selector" style="display: none; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+      <button id="btn-show-chat" class="badge purple" onclick="switchDashboardView('chat')" style="cursor: pointer; border: none; font-size: 0.85rem; padding: 0.4rem 1.2rem;">💬 Chat Assistant</button>
+      <button id="btn-show-logs" class="badge purple" onclick="switchDashboardView('logs')" style="cursor: pointer; border: none; font-size: 0.85rem; padding: 0.4rem 1.2rem; opacity: 0.6;">📋 Audit Logs</button>
+    </div>
+
+    <div id="dashboard-chat-view">
+      <div id="chat-messages-container" class="chat-messages">
+        <div class="msg-bubble bot">
+          Hello! I am AskIIITA, your AI-powered campus assistant. How can I help you today?
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-user-input" class="chat-input" placeholder="Type your query..." onkeydown="if(event.key === 'Enter') sendQuery()">
+        <button class="chat-send-btn" onclick="sendQuery()">Send</button>
+      </div>
+    </div>
+
+    <div id="dashboard-logs-view" style="display: none;">
+      <h3 style="margin-top: 0; color: #ffffff; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">📋 Audit History <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">(Last 50 entries)</span></h3>
+      <div id="logs-list-container" style="max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+        <div style="color: var(--text-muted); text-align: center; padding: 2rem;">Loading audit records...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchView(viewName) {
+    const btnGuide = document.getElementById('btn-guide');
+    const btnChat = document.getElementById('btn-chat');
+    const guideView = document.getElementById('guide-view-content');
+    const chatView = document.getElementById('chat-view-content');
+    
+    if (viewName === 'guide') {
+      btnGuide.classList.add('active');
+      btnChat.classList.remove('active');
+      guideView.style.display = 'block';
+      chatView.style.display = 'none';
+    } else {
+      btnGuide.classList.remove('active');
+      btnChat.classList.add('active');
+      guideView.style.display = 'none';
+      chatView.style.display = 'block';
+      initChatDemo();
+    }
+  }
+
+  function toggleAuthView(view) {
+    const loginView = document.getElementById('login-form-view');
+    const regView = document.getElementById('register-form-view');
+    if (view === 'register') {
+      loginView.style.display = 'none';
+      regView.style.display = 'block';
+    } else {
+      loginView.style.display = 'block';
+      regView.style.display = 'none';
+    }
+  }
+
+  function initChatDemo() {
+    const token = localStorage.getItem('askiiita_token');
+    const username = localStorage.getItem('askiiita_username');
+    const role = localStorage.getItem('askiiita_role');
+    
+    const authContainer = document.getElementById('auth-container');
+    const chatDashboard = document.getElementById('chat-dashboard');
+    
+    if (token && username && role) {
+      authContainer.style.display = 'none';
+      chatDashboard.style.display = 'block';
+      
+      const roleEmoji = role === 'admin' ? '🛡️' : (role === 'faculty' ? '👨‍🏫' : '🧑‍🎓');
+      document.getElementById('user-display-badge').innerText = `👤 ${username} (${roleEmoji} ${role})`;
+      
+      if (role === 'admin') {
+        document.getElementById('admin-view-selector').style.display = 'flex';
+      } else {
+        document.getElementById('admin-view-selector').style.display = 'none';
+      }
+      switchDashboardView('chat');
+    } else {
+      authContainer.style.display = 'block';
+      chatDashboard.style.display = 'none';
+    }
+  }
+
+  async function submitLogin() {
+    const userVal = document.getElementById('login-username').value.trim();
+    const passVal = document.getElementById('login-password').value;
+    const errDiv = document.getElementById('login-error');
+    errDiv.style.display = 'none';
+    
+    if (!userVal || !passVal) {
+      errDiv.innerText = "Please fill in all fields.";
+      errDiv.style.display = 'block';
+      return;
+    }
+    
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: userVal, password: passVal })
+      });
+      const data = await response.json();
+      
+      if (!response.ok) {
+        errDiv.innerText = data.error || "Authentication failed.";
+        errDiv.style.display = 'block';
+      } else {
+        localStorage.setItem('askiiita_token', data.token);
+        localStorage.setItem('askiiita_username', data.username);
+        localStorage.setItem('askiiita_role', data.role);
+        initChatDemo();
+      }
+    } catch (e) {
+      errDiv.innerText = "Network Error: Could not connect to authentication API.";
+      errDiv.style.display = 'block';
+    }
+  }
+
+  async function submitRegister() {
+    const userVal = document.getElementById('reg-username').value.trim();
+    const passVal = document.getElementById('reg-password').value;
+    const errDiv = document.getElementById('reg-error');
+    errDiv.style.display = 'none';
+    
+    if (!userVal || !passVal) {
+      errDiv.innerText = "Please fill in all fields.";
+      errDiv.style.display = 'block';
+      return;
+    }
+    if (passVal.length < 6) {
+      errDiv.innerText = "Password must be at least 6 characters.";
+      errDiv.style.display = 'block';
+      return;
+    }
+    
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: userVal, password: passVal })
+      });
+      const data = await response.json();
+      
+      if (!response.ok) {
+        errDiv.innerText = data.error || "Registration failed.";
+        errDiv.style.display = 'block';
+      } else {
+        alert("Account created successfully! Please sign in.");
+        toggleAuthView('login');
+      }
+    } catch (e) {
+      errDiv.innerText = "Network Error: Could not connect to registration API.";
+      errDiv.style.display = 'block';
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('askiiita_token');
+    localStorage.removeItem('askiiita_username');
+    localStorage.removeItem('askiiita_role');
+    initChatDemo();
+  }
+
+  function switchDashboardView(view) {
+    const btnChat = document.getElementById('btn-show-chat');
+    const btnLogs = document.getElementById('btn-show-logs');
+    const chatPanel = document.getElementById('dashboard-chat-view');
+    const logsPanel = document.getElementById('dashboard-logs-view');
+    
+    if (view === 'chat') {
+      btnChat.style.opacity = '1';
+      btnLogs.style.opacity = '0.6';
+      chatPanel.style.display = 'block';
+      logsPanel.style.display = 'none';
+    } else {
+      btnChat.style.opacity = '0.6';
+      btnLogs.style.opacity = '1';
+      chatPanel.style.display = 'none';
+      logsPanel.style.display = 'block';
+      loadAuditLogs();
+    }
+  }
+
+  async function sendQuery() {
+    const input = document.getElementById('chat-user-input');
+    const text = input.value.trim();
+    if (!text) return;
+    
+    input.value = '';
+    const messagesContainer = document.getElementById('chat-messages-container');
+    
+    // Append User message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'msg-bubble user';
+    userMsg.innerText = text;
+    messagesContainer.appendChild(userMsg);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    // Append Typing Indicator
+    const typingMsg = document.createElement('div');
+    typingMsg.className = 'msg-bubble bot';
+    typingMsg.innerText = 'typing...';
+    messagesContainer.appendChild(typingMsg);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    const token = localStorage.getItem('askiiita_token');
+    try {
+      const response = await fetch('/api/query', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ query: text, token: token })
+      });
+      const data = await response.json();
+      
+      messagesContainer.removeChild(typingMsg);
+      
+      const botMsg = document.createElement('div');
+      botMsg.className = 'msg-bubble bot';
+      
+      if (!response.ok) {
+        botMsg.innerText = `Error: ${data.error || 'Query failed.'}`;
+      } else {
+        let contentHtml = data.answer.replace(/\n/g, '<br>');
+        if (data.sources && data.sources.length > 0) {
+          contentHtml += `<div class="msg-sources">📚 Sources: ${data.sources.join(', ')}</div>`;
+        }
+        botMsg.innerHTML = contentHtml;
+      }
+      messagesContainer.appendChild(botMsg);
+    } catch (e) {
+      messagesContainer.removeChild(typingMsg);
+      const botMsg = document.createElement('div');
+      botMsg.className = 'msg-bubble bot';
+      botMsg.innerText = 'Network Error: Could not connect to search API.';
+      messagesContainer.appendChild(botMsg);
+    }
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  async function loadAuditLogs() {
+    const container = document.getElementById('logs-list-container');
+    container.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 2rem;">Loading logs...</div>';
+    
+    const token = localStorage.getItem('askiiita_token');
+    try {
+      const response = await fetch('/api/audit_logs', {
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await response.json();
+      
+      if (!response.ok) {
+        container.innerHTML = `<div style="color: #ef4444; padding: 1rem;">Failed to load logs: ${data.error || 'Access Denied.'}</div>`;
+        return;
+      }
+      
+      if (!data.audit_logs || data.audit_logs.length === 0) {
+        container.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 2rem;">No logs recorded yet.</div>';
+        return;
+      }
+      
+      container.innerHTML = '';
+      data.audit_logs.forEach(log => {
+        const item = document.createElement('div');
+        item.className = 'log-item';
+        
+        let retrievedHtml = '';
+        if (log.retrieved_chunks && log.retrieved_chunks.length > 0) {
+          log.retrieved_chunks.forEach(chunk => {
+            retrievedHtml += `
+              <div class="log-chunk">
+                <strong>[${chunk.access_level.toUpperCase()}] ${chunk.source_file}</strong><br>
+                ${chunk.content_snippet}...
+              </div>`;
+          });
+        } else {
+          retrievedHtml = '<div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.3rem;">No chunks retrieved (Pre-filtered / empty)</div>';
+        }
+        
+        const timestamp = new Date(log.timestamp).toLocaleString();
+        
+        item.innerHTML = `
+          <div class="log-header">
+            <span>👤 ${log.user_id} (${log.role})</span>
+            <span>🕒 ${timestamp}</span>
+          </div>
+          <div class="log-query">Query: ${log.query_text}</div>
+          <div class="log-retrieved">
+            <details>
+              <summary style="font-size: 0.82rem; cursor: pointer; color: var(--primary);">Retrieve Details (${log.retrieved_chunks ? log.retrieved_chunks.length : 0} chunks)</summary>
+              ${retrievedHtml}
+            </details>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    } catch (e) {
+      container.innerHTML = '<div style="color: #ef4444; padding: 1rem;">Network Error: Failed to fetch logs.</div>';
+    }
+  }
+</script>
+
+</body>
+</html>
